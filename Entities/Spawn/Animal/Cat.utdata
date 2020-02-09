@@ -1,0 +1,131 @@
+﻿[{
+    "$TypeId": 4,
+    "Id": "3955770d065f4b21a4ef45bae05b2549",
+    "Name": "Cat",
+    "ExportFlags": 0,
+    "SerializedVersion": 0,
+    "Entities": [
+        { "$TypeId": 9, "Id": "0f145b37ff1941b6931d88cc34ceab64", "Name": "Cat" },
+        { "$TypeId": 9, "Id": "f48401e4b4d243bdb115ec16127fcdee", "Name": "Sprite" }
+    ]
+},
+{
+    "$TypeId": 5,
+    "Id": "0f145b37ff1941b6931d88cc34ceab64",
+    "Name": "Cat",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "a015bc52c7befa4d7484891d74d2b574", "Name": "RectHitBox2D" },
+        "Properties": {
+            "box": {
+                "Type": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
+                "Properties": {
+                    "x": -4,
+                    "y": 0,
+                    "width": 8,
+                    "height": 5
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 0,
+                    "b": 0,
+                    "a": 0.003921569
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "3f08b78ea04243fbaa34fb6d0030b7a4", "Name": "Animal" },
+        "Properties": {
+            "baseSpeed": 20,
+            "basePauseTryTime": 0.6,
+            "pauseRatio": 0.2,
+            "basePauseDurationRange": {
+                "Type": { "Id": "0617b7f4431866888bfdb077d683c2ce", "Name": "Range" },
+                "Properties": {
+                    "start": 1,
+                    "end": 4.5
+                }
+            },
+            "turnRatio": 0.33,
+            "jumpHeight": 3,
+            "jumpSpeed": 20,
+            "abductSpeed": 13
+        }
+    }, {
+        "Type": { "Id": "2266a95f5d16ca1ddde710d7c047ba69", "Name": "TransformLocalRotation" },
+        "Properties": {
+            "rotation": {
+                "Type": { "Id": "dc7e11e5d517ed01fd5d084a6c9fd64d", "Name": "Quaternion" },
+                "Properties": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "w": 1
+                }
+            }
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "f48401e4b4d243bdb115ec16127fcdee",
+    "Name": "Sprite",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "0f145b37ff1941b6931d88cc34ceab64", "Name": "Dog" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "y": 3
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "2266a95f5d16ca1ddde710d7c047ba69", "Name": "TransformLocalRotation" }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "sprite": { "$TypeId": 10, "Guid": "575482ac131b772428f61807d74ecf0e", "FileId": 21300000, "Type": 3 },
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 1
+                }
+            }
+        }
+    }]
+}]

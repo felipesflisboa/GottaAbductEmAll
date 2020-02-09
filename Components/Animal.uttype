@@ -1,0 +1,115 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "3f08b78ea04243fbaa34fb6d0030b7a4",
+    "Name": "Animal",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "f1bac8c109e9402d9c2eb86a78c0d7b5",
+        "Name": "baseSpeed",
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "a6923c05f3ba44b2b4dc42253bfe1282",
+        "Name": "basePauseTryTime",
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "630a8f77fd8d47fea65e59c2ceb6c500",
+        "Name": "pauseRatio",
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "32185a7df42249b8b211ebcdd69b6235",
+        "Name": "basePauseDurationRange",
+        "FieldType": { "Id": "0617b7f4431866888bfdb077d683c2ce", "Name": "Range" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "a2c627a9600b4255bb29f4cdb739fe79",
+        "Name": "turnRatio",
+        "Documentation": {
+            "Summary": "During pause"
+        },
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "3d9ffd21a21e485cad2f2bdc2984fc9b",
+        "Name": "jumpHeight",
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "335eb1b74bcd4179abca391680c10abc",
+        "Name": "jumpSpeed",
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "2606b9ea1f594bf59ce6aca6a1ec917c",
+        "Name": "abductSpeed",
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "615afa5be63c460b8d12aa470c79fa9d",
+        "Name": "nextPauseTryTime",
+        "Documentation": {
+            "Summary": "RUNTIME"
+        },
+        "FieldType": { "Id": "74cf32c2744342b7903871f8feb2fdd7", "Name": "Float64" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "dd56203cdd374f2b9c620cc2d0f0a240",
+        "Name": "nextMoveTime",
+        "Documentation": {
+            "Summary": "RUNTIME"
+        },
+        "FieldType": { "Id": "74cf32c2744342b7903871f8feb2fdd7", "Name": "Float64" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "70fafc6aaa524da1930bb08b3e0bbc82",
+        "Name": "onTractorBeam",
+        "FieldType": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "3f08b78ea04243fbaa34fb6d0030b7a4", "Name": "Animal" },
+        "Properties": {
+            "jumpHeight": 2,
+            "jumpSpeed": 20,
+            "abductSpeed": 5
+        }
+    }
+}]

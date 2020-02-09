@@ -1,0 +1,64 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "5d648cd084304c4d96d0f0261932ded4",
+    "Name": "AudioManager",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "e88ba5021d1043b4804f7f683b1d6947",
+        "Name": "mute",
+        "FieldType": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "06db547532d044cbadeb2ad252b64f2c",
+        "Name": "pointAudio",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "4aa5eee9e6654840bc16184e2f91efc5",
+        "Name": "liveAudio",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "e0f569997b60489cbd457c7e130ea791",
+        "Name": "deathAudio",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "c124b95006d94c538208aea1f7d12dac",
+        "Name": "gameOverAudio",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "70b3142aa2df43e58807c18baac16e11",
+        "Name": "lastPlayedAudio",
+        "Documentation": {
+            "Summary": "RUNTIME"
+        },
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "5d648cd084304c4d96d0f0261932ded4", "Name": "AudioManager" }
+    }
+}]

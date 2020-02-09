@@ -1,0 +1,12 @@
+sysinfo.txt
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+*.sqo
+*.sqr
+ehthumbs.db
+[Tt]humbs.db
+[Dd]esktop.ini
+.gitignore.meta

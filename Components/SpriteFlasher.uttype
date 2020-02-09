@@ -1,0 +1,60 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "dcbbae75ee9547f58d2926533ee12280",
+    "Name": "SpriteFlasher",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "3a732411863e465db0b57cdcdf818709",
+        "Name": "enabled",
+        "FieldType": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "bc2f045d362a41169d54714dd097c871",
+        "Name": "duration",
+        "Documentation": {
+            "Summary": "Total duration (counting sprite \nappearing and disappearing)"
+        },
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "41ff21a460fe412c8861dd8c68b9daed",
+        "Name": "lastFrameEnabled",
+        "FieldType": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" },
+        "Array": false,
+        "Visibility": 1,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "49e26651193946b3a5e13cfc50c7dd6a",
+        "Name": "nextChangeRemainingTime",
+        "FieldType": { "Id": "74cf32c2744342b7903871f8feb2fdd7", "Name": "Float64" },
+        "Array": false,
+        "Visibility": 1,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "0233f94d402344e29f672c00359441a7",
+        "Name": "originalAlpha",
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 1,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "dcbbae75ee9547f58d2926533ee12280", "Name": "SpriteFlasher" },
+        "Properties": {
+            "enabled": true,
+            "duration": 0.5
+        }
+    }
+}]

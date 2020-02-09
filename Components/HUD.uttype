@@ -1,0 +1,45 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "a70af3fb2d9c45b29bb5c7b1917f9e14",
+    "Name": "HUD",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "231c63957a274338b0928b8a74f0d3e8",
+        "Name": "scoreText",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "1b03a65e6e0445cb86f7c22f71890dac",
+        "Name": "topScoreText",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "816730ebf534493b9863a50ca6d8ad56",
+        "Name": "liveText",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "660254a085e548da8d2dcc3ed6b28f0e",
+        "Name": "gameOverRect",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "a70af3fb2d9c45b29bb5c7b1917f9e14", "Name": "HUD" }
+    }
+}]

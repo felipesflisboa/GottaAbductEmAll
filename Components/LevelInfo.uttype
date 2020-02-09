@@ -1,0 +1,32 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "6ce1f66edc4a499980bbca7697cbf9d0",
+    "Name": "LevelInfo",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "Documentation": {
+        "Summary": "Used on inspector"
+    },
+    "TypeCode": "Struct",
+    "Fields": [{
+        "Id": "020df4b1078f4f48ade2d97551797033",
+        "Name": "score",
+        "FieldType": { "Id": "2aa56ce081e14e8a93d276da72d813bc", "Name": "Int16" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "dc1354a0eb0742eeb6eb5360801d95ff",
+        "Name": "speed",
+        "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "6ce1f66edc4a499980bbca7697cbf9d0", "Name": "LevelInfo" }
+    }
+}]

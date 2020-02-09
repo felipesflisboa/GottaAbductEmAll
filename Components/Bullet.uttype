@@ -1,0 +1,12 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "4d1eeae0b85b4f379e68e16edf4fe2d6",
+    "Name": "Bullet",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "DefaultValue": {
+        "Type": { "Id": "4d1eeae0b85b4f379e68e16edf4fe2d6", "Name": "Bullet" }
+    }
+}]

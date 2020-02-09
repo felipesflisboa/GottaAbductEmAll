@@ -1,0 +1,127 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "38cf58bbf97c41bf873f84c7134e4a0e",
+    "Name": "Player",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "a54e30c01fe3478eb5e65ff830c9865e",
+        "Name": "camera",
+        "Documentation": {
+            "Summary": "TODO put on Gamemanager"
+        },
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "8c7f66b297e14a32a314ed05bed1341c",
+        "Name": "collider",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "895ce1ddbd21438bad4b9a7af2b57720",
+        "Name": "graphic",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "b3671ae50b374ac197a7f5215931532c",
+        "Name": "explosionGraphic",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "9068df2658464524bad72a1c8f4ecc7c",
+        "Name": "tractorBeam",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "b29d5637d75f481697af38c5da6feede",
+        "Name": "state",
+        "Documentation": {
+            "Summary": "RUNTIME"
+        },
+        "FieldType": { "Id": "98a2c1b2189b4abea067fd91865acee6", "Name": "PlayerState" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "d22b56818f9843dd9f76b16338c493ff",
+        "Name": "endStateTime",
+        "Documentation": {
+            "Summary": "RUNTIME"
+        },
+        "FieldType": { "Id": "74cf32c2744342b7903871f8feb2fdd7", "Name": "Float64" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "63218be1aaaa4de697aa960cd8fcc74c",
+        "Name": "animalOnTractorBeamArray",
+        "Documentation": {
+            "Summary": "RUNTIME"
+        },
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": true,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "0b54a740fd9a483ca1eaaa562a0389a2",
+        "Name": "extraLiveCount",
+        "FieldType": { "Id": "27c155635ccb4ab2bcb79ef5aaf129ec", "Name": "Int8" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "54f780ca5edc4038b249f588b862f8ac",
+        "Name": "extraLiveLimit",
+        "FieldType": { "Id": "27c155635ccb4ab2bcb79ef5aaf129ec", "Name": "Int8" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "791293519130401da043cc78a4312e73",
+        "Name": "extraLiveRequiredPoints",
+        "Documentation": {
+            "Summary": "RUNTIME"
+        },
+        "FieldType": { "Id": "27c155635ccb4ab2bcb79ef5aaf129ec", "Name": "Int8" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "38cf58bbf97c41bf873f84c7134e4a0e", "Name": "Player" },
+        "Properties": {
+            "state": {
+                "$TypeId": 8,
+                "Type": { "Id": "98a2c1b2189b4abea067fd91865acee6", "Name": "PlayerState" },
+                "Id": "c6f4ffc7206e4bbc9953bdc4187b02a1",
+                "Name": "Alive",
+                "Value": 1
+            },
+            "extraLiveCount": 3,
+            "extraLiveLimit": 3
+        }
+    }
+}]

@@ -1,0 +1,51 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "98a2c1b2189b4abea067fd91865acee6",
+    "Name": "PlayerState",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Enum",
+    "BaseType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+    "Fields": [{
+        "Id": "de2cd6bc7592466fb03615c626e422b2",
+        "Name": "None",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "c6f4ffc7206e4bbc9953bdc4187b02a1",
+        "Name": "Alive",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "efd7a3fa322d4d679e6172caa518b4fb",
+        "Name": "Invincible",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "514e51da6132472093fafb3fb976c004",
+        "Name": "Dead",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "98a2c1b2189b4abea067fd91865acee6", "Name": "PlayerState" },
+        "Properties": {
+            "Alive": 1,
+            "Invincible": 2,
+            "Dead": 3
+        }
+    }
+}]

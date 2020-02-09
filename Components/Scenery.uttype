@@ -1,0 +1,65 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "7d1ef640b55449b59d04b3685f8901b4",
+    "Name": "Scenery",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "4810f24eb6634d8cb54496fc269f6636",
+        "Name": "levelInfoArray",
+        "FieldType": { "Id": "6ce1f66edc4a499980bbca7697cbf9d0", "Name": "LevelInfo" },
+        "Array": true,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "7c2f74f82d1045129a74f8168f53297e",
+        "Name": "currentZone",
+        "Documentation": {
+            "Summary": "RUNTIME"
+        },
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "a585bec9112e469395e1fe8f10f9b1bc",
+        "Name": "bulletSpawnArea",
+        "Documentation": {
+            "Summary": "RUNTIME"
+        },
+        "FieldType": { "Id": "f216da154c4054842adb590807e977ba", "Name": "Rect" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "acc707121a97424b81740a5d5af9682c",
+        "Name": "leftCornerZone",
+        "Documentation": {
+            "Summary": "RUNTIME"
+        },
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "5f836e971f324308b4f32803498a5c8e",
+        "Name": "rightCornerZone",
+        "Documentation": {
+            "Summary": "RUNTIME"
+        },
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "7d1ef640b55449b59d04b3685f8901b4", "Name": "Scenery" }
+    }
+}]

@@ -180,6 +180,15 @@ namespace game {
 		Resurrect(playerComponent:Player) : Player{
 			playerComponent.state = PlayerState.Invincible;
 			playerComponent.endStateTime = RESPAWN_INVINCIBILITY_DURATION + this.world.getConfigData(GameContext).time;
+			this.world.usingComponentData( 
+				playerComponent.explosionGraphic, 
+				[ut.Core2D.Sprite2DRenderer, ut.Core2D.Sprite2DSequencePlayer], 
+				(spriteRenderer, sequencePlayer)=>{
+					// Safe apply
+					sequencePlayer.paused = true;
+					spriteRenderer.color = new ut.Core2D.Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0);
+				}
+			);
 			this.world.removeComponent(playerComponent.graphic, ut.Disabled);
 			this.world.usingComponentData(playerComponent.graphic, [game.SpriteFlasher], (spriteFlasher) => spriteFlasher.enabled = true);
 			return playerComponent;

@@ -17,9 +17,7 @@ namespace game {
 				[ut.Entity, Animal, ut.Core2D.TransformLocalPosition, ut.Core2D.TransformLocalRotation], 
 				(entity, animalComponent, tLocalPos, tLocalRot) => {
 					if(animalComponent.onTractorBeam){
-						tLocalPos.position = tLocalPos.position.add(new Vector3(
-							0, animalComponent.abductSpeed*this.scheduler.deltaTime(), 0
-						));
+						tLocalPos.position = tLocalPos.position.add(new Vector3(0, animalComponent.abductSpeed*this.scheduler.deltaTime(), 0));
 						return;
 					}
 

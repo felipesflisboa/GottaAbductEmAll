@@ -23,9 +23,7 @@ namespace reusable {
 		}
 
 		static GetLocalRect(
-			boxCollider: ut.Physics2D.BoxCollider2D,
-			tLocalPos: ut.Core2D.TransformLocalPosition,
-			tLocalScale: ut.Core2D.TransformLocalScale
+			boxCollider: ut.Physics2D.BoxCollider2D, tLocalPos: ut.Core2D.TransformLocalPosition, tLocalScale: ut.Core2D.TransformLocalScale
 		) : ut.Math.Rect{
 			let scaledSize = boxCollider.size.multiply(new Vector2(tLocalScale.scale.x, tLocalScale.scale.y));
 			return new ut.Math.Rect(

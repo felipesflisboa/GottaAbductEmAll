@@ -26,9 +26,7 @@ namespace game {
 					this.world.hasComponent(hud.gameOverRect, ut.Disabled)
 				){
 					this.world.removeComponent(hud.gameOverRect, ut.Disabled);
-					AudioPlayer.Play(
-						this.world,this.world.getComponentData(context.audioManager, AudioManager).gameOverAudio
-					);
+					AudioPlayer.Play(this.world,this.world.getComponentData(context.audioManager, AudioManager).gameOverAudio);
 				}
 			});
 			this.world.forEach([ut.Entity, HUDHeart],(entity, heart) => {

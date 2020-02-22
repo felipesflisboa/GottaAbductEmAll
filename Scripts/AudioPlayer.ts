@@ -20,11 +20,8 @@ namespace game {
 		}
 
 		public static Stop(world:ut.World, audioManagerComponent?:AudioManager) : void{
-			if(audioManagerComponent==null){
-				audioManagerComponent = world.getComponentData(
-					world.getConfigData(GameContext).audioManager, AudioManager
-				);
-			}
+			if(audioManagerComponent==null)
+				audioManagerComponent = world.getComponentData(world.getConfigData(GameContext).audioManager, AudioManager);
 			if(!audioManagerComponent.lastPlayedAudio.isNone())
 				world.getOrAddComponentData(audioManagerComponent.lastPlayedAudio, ut.Audio.AudioSourceStop);
 		}

@@ -51,9 +51,7 @@ namespace game {
 			context.initialized = true;
 			context.gameOverShowTime = 0;
 			context.ended = false;
-			context.usedLevelInfoArray = this.GenerateUsedLevelInfoArray(
-				this.world.getComponentData(context.scenery, Scenery).levelInfoArray
-			);
+			context.usedLevelInfoArray=this.GenerateUsedLevelInfoArray(this.world.getComponentData(context.scenery, Scenery).levelInfoArray);
 			context.score = 0;
 			context.topScore = GameManagerSystem.LoadTopScore();
 			context.speed = context.usedLevelInfoArray[context.score].speed;
@@ -174,18 +172,6 @@ namespace game {
 						Math.abs(currentZoneX - tLocalPos.position.x) + ZONE_WIDTH
 					) * reusable.GameUtil.Sign(currentZoneX - tLocalPos.position.x), 
 				0, 0);
-				/* //remove . Added on AnimalSystem
-				console.log("Moved on time="+this.world.getConfigData(GameContext).time);
-				console.log("Player pos=");
-				console.log(this.world.getComponentData(this.world.getConfigData(GameContext).player, ut.Core2D.TransformLocalPosition).position);
-				this.world.forEach([Animal, ut.Core2D.TransformLocalPosition],(animalComponent, animalLocalPos)=>{
-					if(GameManagerSystem.OnZone(tLocalPos.position.x, animalLocalPos.position.x)){
-						animalLocalPos.position = animalLocalPos.position.add(vecToAdd);
-						console.log("animalLocalNewPos");
-						console.log(animalLocalPos.position);
-					}
-				});
-				*/
 				tLocalPos.position = tLocalPos.position.add(vecToAdd);
 			});
 		}
@@ -211,9 +197,7 @@ namespace game {
 				for (let score = levelInfoArray[i].score ; score <= levelInfoArray[i+1].score; score++) {
 					let scoreRatio = (score-levelInfoArray[i].score)/(levelInfoArray[i+1].score-levelInfoArray[i].score);
 					ret[score] = new UsedLevelInfo();
-					ret[score].speed = (
-						levelInfoArray[i].speed + scoreRatio*(levelInfoArray[i+1].speed-levelInfoArray[i].speed)
-					);
+					ret[score].speed = levelInfoArray[i].speed + scoreRatio*(levelInfoArray[i+1].speed-levelInfoArray[i].speed);
 				}
 			}
 			return ret;
@@ -223,29 +207,19 @@ namespace game {
 			let sceneryComponent  = this.world.getComponentData(context.scenery, Scenery);
 			let bulletSpawnArea  = sceneryComponent.bulletSpawnArea;
 			let bullet = ut.EntityGroup.instantiate(this.world, 'game.Bullet')[0];
-			this.world.usingComponentData(
-				bullet, 
-				[ut.Core2D.TransformLocalPosition, ut.Physics2D.Velocity2D], 
-				(tLocalPos, velocity)=>{
-					const playerPos = this.world.getComponentData(
-						context.player, ut.Core2D.TransformLocalPosition
-					).position;
-					let xSign = this.GetBulletXSign();
-					tLocalPos.position = playerPos.add(new Vector3(
-						xSign*bulletSpawnArea.x,
-						reusable.RandomUtil.Range(bulletSpawnArea.y, reusable.RectUtil.Max(bulletSpawnArea).y),
-						0
-					));
-					let setVelocity = new ut.Physics2D.SetVelocity2D();
-					setVelocity.velocity = this.GetBulletVelocity(
-						context, sceneryComponent, tLocalPos.position.y, xSign
-					);
-					this.world.addComponentData(bullet, setVelocity);
-				}
-			);
-			context.nextBulletTime = (
-				context.time + reusable.RandomUtil.Range(BULLET_BASE_RESPAWN_TIME_RANGE)/context.speed
-			);
+			this.world.usingComponentData(bullet, [ut.Core2D.TransformLocalPosition, ut.Physics2D.Velocity2D], (tLocalPos, velocity)=>{
+				const playerPos = this.world.getComponentData(context.player, ut.Core2D.TransformLocalPosition).position;
+				let xSign = this.GetBulletXSign();
+				tLocalPos.position = playerPos.add(new Vector3(
+					xSign*bulletSpawnArea.x,
+					reusable.RandomUtil.Range(bulletSpawnArea.y, reusable.RectUtil.Max(bulletSpawnArea).y),
+					0
+				));
+				let setVelocity = new ut.Physics2D.SetVelocity2D();
+				setVelocity.velocity = this.GetBulletVelocity(context, sceneryComponent, tLocalPos.position.y, xSign);
+				this.world.addComponentData(bullet, setVelocity);
+			});
+			context.nextBulletTime = context.time + reusable.RandomUtil.Range(BULLET_BASE_RESPAWN_TIME_RANGE)/context.speed;
 			return context;
 		}
 
@@ -286,17 +260,13 @@ namespace game {
 
 		SpawnAnimal(context : GameContext){
 			let sceneryComponent  = this.world.getComponentData(context.scenery, Scenery);
-			let animal = ut.EntityGroup.instantiate(
-				this.world, reusable.RandomUtil.SampleArray(context.animalGroupNameArray)
-			)[0];
+			let animal = ut.EntityGroup.instantiate(this.world, reusable.RandomUtil.SampleArray(context.animalGroupNameArray))[0];
 			const maxDistanceFromPlayer = SCREEN_SIZE.x/2+2;
 			this.world.usingComponentData(
 				animal, 
 				[ut.Core2D.TransformLocalPosition, ut.Core2D.TransformLocalRotation], 
 				(tLocalPosition, tLocalRotation)=>{
-					const playerPos = this.world.getComponentData(
-						context.player, ut.Core2D.TransformLocalPosition
-					).position;
+					const playerPos = this.world.getComponentData(context.player, ut.Core2D.TransformLocalPosition).position;
 					const sceneryXRange = GameManagerSystem.GetSceneryXRange(this.world, sceneryComponent);
 					do{
 						var randomPosX = reusable.RandomUtil.Range(sceneryXRange);
@@ -312,23 +282,9 @@ namespace game {
 		}
 
 		static GetSceneryXRange(world: ut.World, sceneryComponent:Scenery): ut.Math.Range{
-			/* //remove 
-			if(sceneryComponent.leftCornerZone.isNone())
-				var leftCornerZone =  sceneryComponent.currentZone;
-			else
-				var leftCornerZone =  sceneryComponent.leftCornerZone;
-			if(sceneryComponent.rightCornerZone.isNone())
-				var rightCornerZone =  sceneryComponent.currentZone;
-			else
-				var rightCornerZone =  sceneryComponent.rightCornerZone;
-			*/
 			return new ut.Math.Range(
-				world.getComponentData(
-					sceneryComponent.leftCornerZone, ut.Core2D.TransformLocalPosition
-				).position.x - ZONE_WIDTH/2,
-				world.getComponentData(
-					sceneryComponent.rightCornerZone, ut.Core2D.TransformLocalPosition
-				).position.x + ZONE_WIDTH/2,
+				world.getComponentData(sceneryComponent.leftCornerZone, ut.Core2D.TransformLocalPosition).position.x - ZONE_WIDTH/2,
+				world.getComponentData(sceneryComponent.rightCornerZone, ut.Core2D.TransformLocalPosition).position.x + ZONE_WIDTH/2,
 			);
 		}
 
@@ -357,7 +313,7 @@ namespace game {
 				context.speed = context.usedLevelInfoArray[context.usedLevelInfoArray.length - 1].speed;
 			else
 				context.speed = context.usedLevelInfoArray[context.score].speed;
-		   world.setConfigData(context);
+		  world.setConfigData(context);
 		}
 
 		//TODO global constants class

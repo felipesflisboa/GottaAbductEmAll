@@ -1,3 +1,7 @@
+# ======= #
+# General #
+# ======= #
+
 sysinfo.txt
 .DS_Store
 .DS_Store?
@@ -9,4 +13,11 @@ sysinfo.txt
 ehthumbs.db
 [Tt]humbs.db
 [Dd]esktop.ini
+
+  
+# ================ #
+# Repository Metas #
+# ================ #
 .gitignore.meta
+README.md.meta
+LICENSE.meta

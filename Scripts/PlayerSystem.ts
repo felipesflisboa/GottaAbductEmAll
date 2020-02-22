@@ -26,33 +26,18 @@ namespace game {
 						break;
 					}
 				}
-				if(
-					this.IsTractorBeamActive(player) != 
-					(this.IsTractorBeamInputActive() && player.state != PlayerState.Dead)
-				){
+				if(this.IsTractorBeamActive(player) != (this.IsTractorBeamInputActive() && player.state != PlayerState.Dead))
 					reusable.GameUtil.ToggleActiveRecursively(this.world, player.tractorBeam);   
-				}
 				player = this.UpdateTractorBeamAnimals(entity, player);  
 
 				if(player.state == PlayerState.Dead){
-					/* //remove
-					if(this.world.getComponentData(player.explosionGraphic, ut.Core2D.Sprite2DSequencePlayer).paused){
-						console.log("this.world.hasComponent(player.explosionGraphic, ut.Disabled)");
-						console.log(this.world.hasComponent(player.explosionGraphic, ut.Disabled));
-						console.log("player.explosionGraphic");
-						console.log(player.explosionGraphic);
-						this.world.addComponentData(player.explosionGraphic, ut.Disabled);
-					}
-					*/
 					this.world.usingComponentData(
 						player.explosionGraphic, 
 						[ut.Core2D.Sprite2DRenderer, ut.Core2D.Sprite2DSequencePlayer], 
 						(spriteRenderer, sequencePlayer)=>{
 							if(sequencePlayer.time > 0.4){
 								sequencePlayer.paused = true;
-								spriteRenderer.color = new ut.Core2D.Color(
-									spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0
-								); 
+								spriteRenderer.color = new ut.Core2D.Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0); 
 							}
 						}
 					);
@@ -121,9 +106,7 @@ namespace game {
 						this.world.usingComponentData(
 							o.otherEntity, [Animal, ut.Core2D.TransformLocalPosition], (animalComponent, tLocalPos) => {
 								animalComponent.onTractorBeam = true;
-								tLocalPos.position = new Vector3(
-									tLocalPos.position.x, GameManagerSystem.GetGroundPosY(), tLocalPos.position.z
-								);
+								tLocalPos.position = new Vector3(tLocalPos.position.x, GameManagerSystem.GetGroundPosY(), tLocalPos.position.z);
 							}
 						);
 					}else{
@@ -135,14 +118,10 @@ namespace game {
 				};
 			}
 			for (let animal of playerComponent.animalOnTractorBeamArray) {
-				this.world.usingComponentData(
-					animal, [Animal, ut.Core2D.TransformLocalPosition], (animalComponent, tLocalPos) => {
-						animalComponent.onTractorBeam = false;
-						tLocalPos.position = new Vector3(
-							tLocalPos.position.x, GameManagerSystem.GetGroundPosY(), tLocalPos.position.z
-						);
-					}
-				);
+				this.world.usingComponentData(animal, [Animal, ut.Core2D.TransformLocalPosition], (animalComponent, tLocalPos) => {
+					animalComponent.onTractorBeam = false;
+					tLocalPos.position = new Vector3(tLocalPos.position.x, GameManagerSystem.GetGroundPosY(), tLocalPos.position.z);
+				});
 			};
 			playerComponent.animalOnTractorBeamArray = newAnimalOnTractorBeamArray;
 			return playerComponent;
@@ -155,17 +134,13 @@ namespace game {
 			).pointAudio);
 			if(playerComponent.extraLiveRequiredPoints!=0){
 				playerComponent.extraLiveRequiredPoints-=1;
-				if(
-					playerComponent.extraLiveRequiredPoints==0 && 
-					playerComponent.extraLiveCount < playerComponent.extraLiveLimit
-				){
+				if(playerComponent.extraLiveRequiredPoints==0 && playerComponent.extraLiveCount < playerComponent.extraLiveLimit){
 					AudioPlayer.Play(this.world,this.world.getComponentData(
 						this.world.getConfigData(GameContext).audioManager, AudioManager
 					).liveAudio);
 					playerComponent.extraLiveCount+=1;
-					if(playerComponent.extraLiveCount < playerComponent.extraLiveLimit){
+					if(playerComponent.extraLiveCount < playerComponent.extraLiveLimit)
 						playerComponent.extraLiveRequiredPoints=EXTRA_LIVE_POINTS;
-					}
 				}
 			}
 			return playerComponent;
@@ -175,9 +150,8 @@ namespace game {
 			let context = this.world.getConfigData(GameContext);
 			playerComponent.state = PlayerState.Dead;
 			playerComponent.extraLiveCount-=1;
-			if(playerComponent.extraLiveRequiredPoints==0){
+			if(playerComponent.extraLiveRequiredPoints==0)
 				playerComponent.extraLiveRequiredPoints=EXTRA_LIVE_POINTS;
-			}
 			if(playerComponent.extraLiveCount >= 0){
 				playerComponent.endStateTime = RESPAWN_DURATION + this.world.getConfigData(GameContext).time;
 			}else{
@@ -196,14 +170,10 @@ namespace game {
 				(spriteRenderer, sequencePlayer)=>{
 					sequencePlayer.time = 0;
 					sequencePlayer.paused = false;
-					spriteRenderer.color = new ut.Core2D.Color(
-						spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1
-					); 
+					spriteRenderer.color = new ut.Core2D.Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1); 
 				}
 			);
-			AudioPlayer.Play(
-				this.world,this.world.getComponentData(context.audioManager, AudioManager).deathAudio
-			);
+			AudioPlayer.Play(this.world,this.world.getComponentData(context.audioManager, AudioManager).deathAudio);
 			return playerComponent;
 		}
 
@@ -211,17 +181,13 @@ namespace game {
 			playerComponent.state = PlayerState.Invincible;
 			playerComponent.endStateTime = RESPAWN_INVINCIBILITY_DURATION + this.world.getConfigData(GameContext).time;
 			this.world.removeComponent(playerComponent.graphic, ut.Disabled);
-			this.world.usingComponentData(
-				playerComponent.graphic, [game.SpriteFlasher], (spriteFlasher) => spriteFlasher.enabled = true
-			);
+			this.world.usingComponentData(playerComponent.graphic, [game.SpriteFlasher], (spriteFlasher) => spriteFlasher.enabled = true);
 			return playerComponent;
 		}
 
 		RemoveInvincibility(playerComponent:Player) : Player{
 			playerComponent.state = PlayerState.Alive;
-			this.world.usingComponentData(
-				playerComponent.graphic, [game.SpriteFlasher], (spriteFlasher)=> spriteFlasher.enabled = false
-			);
+			this.world.usingComponentData(playerComponent.graphic, [game.SpriteFlasher], (spriteFlasher)=> spriteFlasher.enabled = false);
 			return playerComponent;
 		}
 

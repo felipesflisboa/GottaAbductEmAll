@@ -1,10 +1,10 @@
 
 namespace reusable {
-	//TODO general util with GameUtil using game specific methods
+	//TODO general util with GeneralUtil using game specific methods
 	/**
 	 * General util class (move methods outside when possible).
 	**/
-	export class GameUtil{
+	export class GeneralUtil{
 		// Used as dictionary, since there is no support
 		static childrenKeys : ut.Entity[] = [];
 		static childrenContent : ut.Entity[][] = [];
@@ -23,11 +23,11 @@ namespace reusable {
 		 * Toggle entity as active/inactive, excluding children
 		**/ 
 		static ToggleActive(world: ut.World, entity: ut.Entity): void{
-			GameUtil.ToggleComponent(world, entity, ut.Disabled);
+			GeneralUtil.ToggleComponent(world, entity, ut.Disabled);
 		}
 
 		static ToggleActiveRecursively(world: ut.World, entity: ut.Entity): void{
-			GameUtil.SetActiveRecursively(world, entity, world.hasComponent(entity, ut.Disabled));
+			GeneralUtil.SetActiveRecursively(world, entity, world.hasComponent(entity, ut.Disabled));
 		}
 
 		/**
@@ -37,9 +37,9 @@ namespace reusable {
 		**/
 		static SetActiveRecursively(world: ut.World, entity: ut.Entity, active:boolean): void{
 			if(active)
-				GameUtil.SetActive(world, entity, active);
+				GeneralUtil.SetActive(world, entity, active);
 			let usedArray = null;
-			let indexOf = GameUtil.IndexOfEntity(this.childrenKeys, entity);
+			let indexOf = GeneralUtil.IndexOfEntity(this.childrenKeys, entity);
 			if(indexOf==-1){
 				usedArray = [];
 				for (let childCount = ut.Core2D.TransformService.countChildren(world, entity); childCount > 0; childCount--)
@@ -52,9 +52,9 @@ namespace reusable {
 				usedArray = this.childrenContent[indexOf];
 			}
 			for (let child of usedArray)
-				GameUtil.SetActiveRecursively(world, child, active);
+				GeneralUtil.SetActiveRecursively(world, child, active);
 			if(!active)
-				GameUtil.SetActive(world, entity, active);
+				GeneralUtil.SetActive(world, entity, active);
 		}
 
 		/**
@@ -95,7 +95,7 @@ namespace reusable {
 		 * Find with function. Return null if not found.
 		**/
 		static Find<T>(array:Array<T>, callbackFn:(value:T) => boolean){
-			let indexOf = GameUtil.IndexOf(array, callbackFn);
+			let indexOf = GeneralUtil.IndexOf(array, callbackFn);
 			return indexOf==-1 ? null : array[indexOf];
 		}
 
@@ -113,21 +113,28 @@ namespace reusable {
 		 * IndexOf of an entity array.
 		**/
 		static IndexOfEntity(array:ut.Entity[], entity:ut.Entity){
-			return GameUtil.IndexOf(array, (e) => e.index == entity.index && e.version== entity.version);
+			return GeneralUtil.IndexOf(array, (e) => GeneralUtil.EntityEquals(e, entity));
+		}
+
+		/**
+		 * Compare entities
+		**/
+		static EntityEquals(a:ut.Entity, b:ut.Entity) : boolean {
+			return a.index == b.index && a.version == b.version;
 		}
 
 		/**
 		 * GetKey who checks array 
 		**/
 		static GetKey(array:ut.Core2D.KeyCode[]) : boolean {
-			return GameUtil.IndexOf(array, (e) => ut.Runtime.Input.getKey(e)) != -1;
+			return GeneralUtil.IndexOf(array, (e) => ut.Runtime.Input.getKey(e)) != -1;
 		}
 
 		/**
 		 * GetKeyDown who checks array 
 		**/
 		static GetKeyDown(array:ut.Core2D.KeyCode[]) : boolean {
-			return GameUtil.IndexOf(array, (e) => ut.Runtime.Input.getKeyDown(e)) != -1;
+			return GeneralUtil.IndexOf(array, (e) => ut.Runtime.Input.getKeyDown(e)) != -1;
 		}
 	}
 }

@@ -7,17 +7,16 @@ namespace game {
 			this.world.forEach([ut.Entity, game.BackgroundShip, ut.Core2D.TransformLocalPosition], (entity, ship, tLocalPos) => {
 				if(ship.speed==0)
 					this.Initialize(entity, tLocalPos);
-				const changePosition = ship.way ? tLocalPos.position.x > X_LIMIT : tLocalPos.position.x < -X_LIMIT;
+				const changePosition = ship.speed > 0 ? tLocalPos.position.x > X_LIMIT : tLocalPos.position.x < -X_LIMIT;
 				if(changePosition){
-					ship.way = tLocalPos.position.x < 0;
 					tLocalPos.position = new Vector3(
-						reusable.RandomUtil.Range(X_LIMIT, 120)*(ship.way ? -1 : 1),
+						reusable.GeneralUtil.Sign(tLocalPos.position.x)*reusable.RandomUtil.Range(X_LIMIT, 120),
 						tLocalPos.position.y,
 						tLocalPos.position.z
 					);
-					ship.speed = reusable.RandomUtil.Range(12, 60);
+					ship.speed = -reusable.GeneralUtil.Sign(tLocalPos.position.x)*reusable.RandomUtil.Range(12, 60);
 				}
-				tLocalPos.position = tLocalPos.position.add(new Vector3(ship.speed*(ship.way ? 1 : -1)*this.scheduler.deltaTime(), 0, 0));
+				tLocalPos.position = tLocalPos.position.add(new Vector3(ship.speed*this.scheduler.deltaTime(), 0, 0));
 			});
 		}
 

@@ -11,7 +11,7 @@ namespace game {
 				return;
 			let playerPos = this.world.getComponentData(context.player, ut.Core2D.TransformLocalPosition).position; 
 			//TODO break in method
-			this.world.forEach([ut.Entity, Bullet, ut.Core2D.TransformLocalPosition], (entity, bulletComponent, tLocalPosition) => {
+			this.world.forEach([ut.Entity, Bullet, ut.Core2D.TransformLocalPosition], (entity, bullet, tLocalPosition) => {
 				if(Math.abs(tLocalPosition.position.x - playerPos.x) > BULLET_MAX_X_DISTANCE_TO_PLAYER)
 					ut.Core2D.TransformService.destroyTree(this.world, entity, true);
 			});

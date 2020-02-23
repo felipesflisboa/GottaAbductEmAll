@@ -4,12 +4,7 @@ namespace game {
 	const BULLET_BASE_SPEED : number = 10;
 	const BULLET_EXTRA_Y : number = 6;
 	const ANIMAL_LIMIT : number = 5;
-	const GROUND_POS_Y : number = -20;
-	const ZONE_WIDTH : number = 256;
-	const ZONE_BORDER_TO_MOVE : number = 56;
-	const Y_MOVEMENT_RANGE : ut.Math.Range = new ut.Math.Range(-3, 14);
 	const GAME_OVER_DELAY : number = 3;
-	const SCREEN_SIZE : Vector2 = new Vector2(84, 48);
 	const SCORE_KEY : string = "AbductTopScore";
 
 	@ut.executeBefore(ut.Shared.UserCodeStart)
@@ -24,9 +19,9 @@ namespace game {
 					this.world.setConfigData(context);
 					return;
 				}
-				context = this.Initialize(context);
+				this.world.setConfigData(this.Initialize(context));
+				return;
 			}
-			this.UpdateZones(context);
 			if(context.nextBulletTime <= context.time)
 				context = this.SpawnBullet(context);
 			while(ANIMAL_LIMIT > context.animalCount)
@@ -63,13 +58,13 @@ namespace game {
 
 		SetupScenery() : ut.Entity {
 			let ret = null;
-			this.world.forEach( [ut.Entity, Scenery],(entity, sceneryComponent)=>{
-				const spawnXDistanceToPlayer = SCREEN_SIZE.x/2+2;
-				sceneryComponent.bulletSpawnArea = new ut.Math.Rect(
+			this.world.forEach( [ut.Entity, Scenery],(entity, scenery)=>{
+				const spawnXDistanceToPlayer = GameConstants.SCREEN_SIZE.x/2+2;
+				scenery.bulletSpawnArea = new ut.Math.Rect(
 					-spawnXDistanceToPlayer,
-					Y_MOVEMENT_RANGE.start - BULLET_EXTRA_Y,
+					GameConstants.Y_MOVEMENT_RANGE.start - BULLET_EXTRA_Y,
 					spawnXDistanceToPlayer*2,
-					Y_MOVEMENT_RANGE.end - Y_MOVEMENT_RANGE.start + BULLET_EXTRA_Y*2,
+					GameConstants.Y_MOVEMENT_RANGE.end - GameConstants.Y_MOVEMENT_RANGE.start + BULLET_EXTRA_Y*2,
 				);
 				ret = new ut.Entity(entity.index, entity.version);
 			});
@@ -78,8 +73,8 @@ namespace game {
 
 		SetupAudioManager() : ut.Entity {
 			let ret = null;
-			this.world.forEach( [ut.Entity, AudioManager],(entity, audioManagerComponent)=>{
-				audioManagerComponent.lastPlayedAudio = new ut.Entity(0,0);
+			this.world.forEach( [ut.Entity, AudioManager],(entity, audioManager)=>{
+				audioManager.lastPlayedAudio = new ut.Entity(0,0);
 				ret = new ut.Entity(entity.index, entity.version);
 			});
 			return ret;
@@ -87,104 +82,16 @@ namespace game {
 		
 		SetupPlayer() : ut.Entity {
 			let ret = null;
-			this.world.forEach( [ut.Entity, Player],(entity, playerComponent)=>{
+			this.world.forEach( [ut.Entity, Player],(entity, player)=>{
 				ret = new ut.Entity(entity.index, entity.version);
 			});
 			return ret;
 		}
 
-		//TODO move with priority
-		// #region Zone
-		UpdateZones(context : GameContext) : void{
-			const playerPos = this.world.getComponentData(context.player, ut.Core2D.TransformLocalPosition).position;
-			let sceneryComponent = this.world.getComponentData(context.scenery, Scenery);
-			this.world.forEach([ut.Entity, Zone, ut.Core2D.TransformLocalPosition],(entity, zoneComponent, tLocalPos)=>{
-				if(GameManagerSystem.OnZone(tLocalPos.position.x, playerPos.x)){
-					if(
-						sceneryComponent.currentZone.index != entity.index || 
-						sceneryComponent.currentZone.version != entity.version
-					){
-						sceneryComponent.currentZone = new ut.Entity(entity.index, entity.version);
-						sceneryComponent = this.RefreshCornerZone(sceneryComponent, playerPos.x);
-					}
-				}
-			});
-			const currentZonePos = this.world.getComponentData(
-				sceneryComponent.currentZone, ut.Core2D.TransformLocalPosition
-			).position;
-			if(
-				sceneryComponent.leftCornerZone.index == sceneryComponent.currentZone.index && 
-				sceneryComponent.leftCornerZone.version == sceneryComponent.currentZone.version && 
-				currentZonePos.x - ZONE_WIDTH/2 + ZONE_BORDER_TO_MOVE>playerPos.x
-			){
-				this.MoveZone(sceneryComponent.rightCornerZone, currentZonePos.x);
-				sceneryComponent = this.RefreshCornerZone(sceneryComponent, playerPos.x);
-			}else if(
-				sceneryComponent.rightCornerZone.index == sceneryComponent.currentZone.index && 
-				sceneryComponent.rightCornerZone.version == sceneryComponent.currentZone.version && 
-				currentZonePos.x + ZONE_WIDTH/2 - ZONE_BORDER_TO_MOVE<playerPos.x
-			){
-				this.MoveZone(sceneryComponent.leftCornerZone, currentZonePos.x);
-				sceneryComponent = this.RefreshCornerZone(sceneryComponent, playerPos.x);
-			}
-			this.world.setComponentData(
-				new ut.Entity(context.scenery.index, context.scenery.version), sceneryComponent
-			);
-		}
-
-		RefreshCornerZone(sceneryComponent : Scenery, playerX:number) : Scenery{
-			sceneryComponent.leftCornerZone = new ut.Entity(0,0);
-			let mostLeftPos = new Vector3(0,0,0);
-			sceneryComponent.rightCornerZone = new ut.Entity(0,0);
-			let mostRightPos = new Vector3(0,0,0);
-			this.world.forEach([ut.Entity, Zone, ut.Core2D.TransformLocalPosition],(entity, zoneComponent, tLocalPos)=>{
-				if(
-					sceneryComponent.currentZone.index != entity.index || 
-					sceneryComponent.currentZone.version != entity.version
-				){
-					if(
-						tLocalPos.position.x > playerX && 
-						(sceneryComponent.rightCornerZone.isNone() || tLocalPos.position.x > mostRightPos.x)
-					){
-						sceneryComponent.rightCornerZone = new ut.Entity(entity.index, entity.version);
-						mostRightPos = tLocalPos.position;
-					}
-					if(
-						tLocalPos.position.x < playerX && 
-						(sceneryComponent.leftCornerZone.isNone() || tLocalPos.position.x < mostLeftPos.x)
-					){
-						sceneryComponent.leftCornerZone = new ut.Entity(entity.index, entity.version);
-						mostLeftPos = tLocalPos.position;
-					}
-				}
-			});
-			if(sceneryComponent.rightCornerZone.isNone())
-				sceneryComponent.rightCornerZone = sceneryComponent.currentZone;
-			if(sceneryComponent.leftCornerZone.isNone())
-				sceneryComponent.leftCornerZone = sceneryComponent.currentZone;
-			return sceneryComponent;
-		}
-
-		MoveZone(zone:ut.Entity, currentZoneX:number) : void {
-			this.world.usingComponentData(zone, [ut.Core2D.TransformLocalPosition], (tLocalPos) => {
-				const vecToAdd = new Vector3(
-					(
-						Math.abs(currentZoneX - tLocalPos.position.x) + ZONE_WIDTH
-					) * reusable.GameUtil.Sign(currentZoneX - tLocalPos.position.x), 
-				0, 0);
-				tLocalPos.position = tLocalPos.position.add(vecToAdd);
-			});
-		}
-
-		static OnZone(zoneX:number, x:number) : boolean{
-			return (zoneX - ZONE_WIDTH/2 <= x) && (x <= zoneX + ZONE_WIDTH/2);
-		}
-		// #endregion
-
 		//TODO move
 		static IsTitle(world:ut.World) : boolean {
 			let ret = true;
-			world.forEach( [Scenery],(sceneryComponent) => ret = false);
+			world.forEach( [Scenery],(scenery) => ret = false);
 			return ret;
 		}
 
@@ -204,8 +111,8 @@ namespace game {
 		}
 
 		SpawnBullet(context : GameContext){
-			let sceneryComponent  = this.world.getComponentData(context.scenery, Scenery);
-			let bulletSpawnArea  = sceneryComponent.bulletSpawnArea;
+			let scenery  = this.world.getComponentData(context.scenery, Scenery);
+			let bulletSpawnArea  = scenery.bulletSpawnArea;
 			let bullet = ut.EntityGroup.instantiate(this.world, 'game.Bullet')[0];
 			this.world.usingComponentData(bullet, [ut.Core2D.TransformLocalPosition, ut.Physics2D.Velocity2D], (tLocalPos, velocity)=>{
 				const playerPos = this.world.getComponentData(context.player, ut.Core2D.TransformLocalPosition).position;
@@ -216,7 +123,7 @@ namespace game {
 					0
 				));
 				let setVelocity = new ut.Physics2D.SetVelocity2D();
-				setVelocity.velocity = this.GetBulletVelocity(context, sceneryComponent, tLocalPos.position.y, xSign);
+				setVelocity.velocity = this.GetBulletVelocity(context, scenery, tLocalPos.position.y, xSign);
 				this.world.addComponentData(bullet, setVelocity);
 			});
 			context.nextBulletTime = context.time + reusable.RandomUtil.Range(BULLET_BASE_RESPAWN_TIME_RANGE)/context.speed;
@@ -248,31 +155,31 @@ namespace game {
 		GetBulletVelocity(context : GameContext, scenery : Scenery, localBulletPosY:number, xSign:number) : Vector2{
 			let ret = new Vector2();
 			ret.x = -xSign*scenery.bulletSpawnArea.x*2;
-			ret.y = reusable.RandomUtil.Range(Y_MOVEMENT_RANGE) - localBulletPosY;
-			if(localBulletPosY < Y_MOVEMENT_RANGE.start)
-				ret.y += Y_MOVEMENT_RANGE.start - localBulletPosY;
-			if(localBulletPosY > Y_MOVEMENT_RANGE.end)
-				ret.y += Y_MOVEMENT_RANGE.end - localBulletPosY;
+			ret.y = reusable.RandomUtil.Range(GameConstants.Y_MOVEMENT_RANGE) - localBulletPosY;
+			if(localBulletPosY < GameConstants.Y_MOVEMENT_RANGE.start)
+				ret.y += GameConstants.Y_MOVEMENT_RANGE.start - localBulletPosY;
+			if(localBulletPosY > GameConstants.Y_MOVEMENT_RANGE.end)
+				ret.y += GameConstants.Y_MOVEMENT_RANGE.end - localBulletPosY;
 			ret.normalize();
 			ret.multiplyScalar(context.speed * BULLET_BASE_SPEED);
 			return ret;
 		}
 
 		SpawnAnimal(context : GameContext){
-			let sceneryComponent  = this.world.getComponentData(context.scenery, Scenery);
+			let scenery  = this.world.getComponentData(context.scenery, Scenery);
 			let animal = ut.EntityGroup.instantiate(this.world, reusable.RandomUtil.SampleArray(context.animalGroupNameArray))[0];
-			const maxDistanceFromPlayer = SCREEN_SIZE.x/2+2;
+			const maxDistanceFromPlayer = GameConstants.SCREEN_SIZE.x/2+2;
 			this.world.usingComponentData(
 				animal, 
 				[ut.Core2D.TransformLocalPosition, ut.Core2D.TransformLocalRotation], 
 				(tLocalPosition, tLocalRotation)=>{
 					const playerPos = this.world.getComponentData(context.player, ut.Core2D.TransformLocalPosition).position;
-					const sceneryXRange = GameManagerSystem.GetSceneryXRange(this.world, sceneryComponent);
+					const sceneryXRange = GameManagerSystem.GetSceneryXRange(this.world, scenery);
 					do{
 						var randomPosX = reusable.RandomUtil.Range(sceneryXRange);
 						//TODO maybe a Math.floor
 					}while(context.time > 1 && Math.abs(playerPos.x-randomPosX) < maxDistanceFromPlayer)
-					tLocalPosition.position = new Vector3(randomPosX,GameManagerSystem.GetGroundPosY(),0);
+					tLocalPosition.position = new Vector3(randomPosX, GameConstants.GROUND_POS_Y, 0);
 					if(Math.random() > 0.5)
 						tLocalRotation.rotation = new Quaternion().setFromAxisAngle(new Vector3(0, 1, 0), Math.PI);
 				}
@@ -281,10 +188,10 @@ namespace game {
 			return context;
 		}
 
-		static GetSceneryXRange(world: ut.World, sceneryComponent:Scenery): ut.Math.Range{
+		static GetSceneryXRange(world: ut.World, scenery:Scenery): ut.Math.Range{
 			return new ut.Math.Range(
-				world.getComponentData(sceneryComponent.leftCornerZone, ut.Core2D.TransformLocalPosition).position.x - ZONE_WIDTH/2,
-				world.getComponentData(sceneryComponent.rightCornerZone, ut.Core2D.TransformLocalPosition).position.x + ZONE_WIDTH/2,
+				world.getComponentData(scenery.leftCornerZone,ut.Core2D.TransformLocalPosition).position.x - GameConstants.ZONE_WIDTH/2,
+				world.getComponentData(scenery.rightCornerZone,ut.Core2D.TransformLocalPosition).position.x + GameConstants.ZONE_WIDTH/2,
 			);
 		}
 
@@ -316,19 +223,9 @@ namespace game {
 		  world.setConfigData(context);
 		}
 
-		//TODO global constants class
-		static GetGroundPosY() : number{
-			return GROUND_POS_Y;
-		}
-
-		//TODO global constants class
-		static GetYMovementRange() : ut.Math.Range{
-			return Y_MOVEMENT_RANGE;
-		}
-
 		//TODO move
 		static HasAnyInputDown() : boolean {
-			return ut.Runtime.Input.getMouseButton(0) || reusable.GameUtil.GetKeyDown([
+			return ut.Runtime.Input.getMouseButton(0) || reusable.GeneralUtil.GetKeyDown([
 				ut.Core2D.KeyCode.A, 
 				ut.Core2D.KeyCode.D, 
 				ut.Core2D.KeyCode.S, 
@@ -348,15 +245,15 @@ namespace game {
 		}
 
 		static LoadTopScore() : number{
-			return +reusable.PersistenceUtil.getCookie(SCORE_KEY);
+			return +reusable.PersistenceUtil.GetCookie(SCORE_KEY);
 		}
 
 		static SaveTopScore(value:number) : void{
-			reusable.PersistenceUtil.setCookie(SCORE_KEY, value.toString());
+			reusable.PersistenceUtil.SetCookie(SCORE_KEY, value.toString());
 		}
 
 		static GetTimeFormatted(context : GameContext): string{
-			return Math.floor(context.time/60)+":"+reusable.GameUtil.ExactDigits( Math.floor(context.time) % 60 ,2)
+			return Math.floor(context.time/60)+":"+reusable.GeneralUtil.ExactDigits( Math.floor(context.time) % 60 ,2)
 		}
 	}
 }

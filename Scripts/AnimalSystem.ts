@@ -11,13 +11,13 @@ namespace game {
 			let context = this.world.getConfigData(GameContext);
 			if(!context.initialized)
 				return;
-			const sceneryComponent = this.world.getComponentData(context.scenery, Scenery);
-			const sceneryXRange = GameManagerSystem.GetSceneryXRange(this.world, sceneryComponent)
+			const scenery = this.world.getComponentData(context.scenery, Scenery);
+			const sceneryXRange = GameManagerSystem.GetSceneryXRange(this.world, scenery)
 			this.world.forEach(
 				[ut.Entity, Animal, ut.Core2D.TransformLocalPosition, ut.Core2D.TransformLocalRotation], 
-				(entity, animalComponent, tLocalPos, tLocalRot) => {
-					if(animalComponent.onTractorBeam){
-						tLocalPos.position = tLocalPos.position.add(new Vector3(0, animalComponent.abductSpeed*this.scheduler.deltaTime(), 0));
+				(entity, animal, tLocalPos, tLocalRot) => {
+					if(animal.onTractorBeam){
+						tLocalPos.position = tLocalPos.position.add(new Vector3(0, animal.abductSpeed*this.scheduler.deltaTime(), 0));
 						return;
 					}
 
@@ -28,34 +28,34 @@ namespace game {
 						pos.x-=sceneryXRange.end-sceneryXRange.start;
 					tLocalPos.position = pos;
 
-					if(animalComponent.nextMoveTime != 0){
-						if(animalComponent.nextMoveTime > context.time)
+					if(animal.nextMoveTime != 0){
+						if(animal.nextMoveTime > context.time)
 							return;
-						if(Math.random() <= animalComponent.turnRatio){
+						if(Math.random() <= animal.turnRatio){
 							tLocalRot = this.Rotate(tLocalRot);
 						}
-						animalComponent.nextMoveTime = 0;
+						animal.nextMoveTime = 0;
 					}
 						
-					if(animalComponent.nextPauseTryTime == 0)
-						animalComponent.nextPauseTryTime = animalComponent.basePauseTryTime/context.speed+context.time;
-					if(context.time > animalComponent.nextPauseTryTime){
-						if(Math.random() <= animalComponent.pauseRatio){
-							animalComponent.nextMoveTime = (
-								reusable.RandomUtil.Range(animalComponent.basePauseDurationRange)/context.speed+context.time
+					if(animal.nextPauseTryTime == 0)
+						animal.nextPauseTryTime = animal.basePauseTryTime/context.speed+context.time;
+					if(context.time > animal.nextPauseTryTime){
+						if(Math.random() <= animal.pauseRatio){
+							animal.nextMoveTime = (
+								reusable.RandomUtil.Range(animal.basePauseDurationRange)/context.speed+context.time
 							);
 						}
-						animalComponent.nextPauseTryTime = 0;
+						animal.nextPauseTryTime = 0;
 					}else{
-						tLocalPos.position = this.GetNewPosAfterFrame(animalComponent, tLocalPos, tLocalRot);
-						if(tLocalPos.position.y == GameManagerSystem.GetGroundPosY() && animalComponent.jumpHeight>0){
+						tLocalPos.position = this.GetNewPosAfterFrame(animal, tLocalPos, tLocalRot);
+						if(tLocalPos.position.y == GameConstants.GROUND_POS_Y && animal.jumpHeight>0){
 							ut.Tweens.TweenService.addTween(
 								this.world, 
 								entity,
 								ut.Core2D.TransformLocalPosition.position.y,
 								tLocalPos.position.y,
-								tLocalPos.position.y + animalComponent.jumpHeight,
-								animalComponent.jumpHeight/animalComponent.jumpSpeed,
+								tLocalPos.position.y + animal.jumpHeight,
+								animal.jumpHeight/animal.jumpSpeed,
 								0,
 								ut.Core2D.LoopMode.PingPongOnce, 
 								ut.Tweens.TweenFunc.OutQuad,
@@ -74,24 +74,11 @@ namespace game {
 			return tLocalRot;
 		}
 
-		GetNewPosAfterFrame(
-			animalComponent:Animal, tLocalPos:ut.Core2D.TransformLocalPosition, tLocalRot:ut.Core2D.TransformLocalRotation
-		) : Vector3{
+		GetNewPosAfterFrame(animal:Animal,tLocalPos:ut.Core2D.TransformLocalPosition,tLocalRot:ut.Core2D.TransformLocalRotation) : Vector3{
 			let sign = new Euler().setFromQuaternion(tLocalRot.rotation).y==0 ? 1 : -1;
 			let ret = tLocalPos.position.add(new Vector3(
-				sign*animalComponent.baseSpeed * this.world.getConfigData(GameContext).speed * this.scheduler.deltaTime(),
-				0,
-				0
+				sign*animal.baseSpeed * this.world.getConfigData(GameContext).speed * this.scheduler.deltaTime(), 0, 0
 			));
-			return ret;
-		}
-
-		//remove
-		ToStringArray(list:number[]) : string{
-			let ret = "";
-			for(let val of list)
-				ret+=val.toFixed(8)+",";
-			ret = "("+ret+")";
 			return ret;
 		}
 	}

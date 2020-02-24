@@ -3,7 +3,7 @@ namespace game {
 	const BASE_SPEED : number = 35;
 	const RESPAWN_DURATION : number = 1.2;
 	const RESPAWN_INVINCIBILITY_DURATION : number = 2.4;
-	const EXTRA_LIVE_POINTS : number = 10; 
+	const EXTRA_LIVE_POINTS : number = 20; 
 
 	@ut.requiredComponents(Player)
 	@ut.executeAfter(ut.Shared.UserCodeStart)
@@ -83,7 +83,7 @@ namespace game {
 				for (let o of this.world.getComponentData(playerEntity, ut.HitBox2D.HitBoxOverlapResults).overlaps) {
 					if (!this.world.hasComponent(o.otherEntity, Animal))
 						continue;
-					player = this.AddOnePoint(player);
+					player = this.AddPoints(player, this.world.getComponentData(o.otherEntity, Animal).points);
 					reusable.GeneralUtil.SetActiveRecursively(this.world, o.otherEntity, false);  
 					let context = this.world.getConfigData(GameContext);
 					context.animalCount--;
@@ -126,20 +126,22 @@ namespace game {
 			return player;
 		}
 
-		AddOnePoint(player:Player) : Player{
-			GameManagerSystem.AddOnePoint(this.world);
+		AddPoints(player:Player, points:number) : Player{
+			GameManagerSystem.AddPoints(this.world, points);
 			AudioPlayer.Play(this.world,this.world.getComponentData(
 				this.world.getConfigData(GameContext).audioManager, AudioManager
 			).pointAudio);
 			if(player.extraLiveRequiredPoints!=0){
-				player.extraLiveRequiredPoints-=1;
-				if(player.extraLiveRequiredPoints==0 && player.extraLiveCount < GameConstants.PLAYER_EXTRA_LIVE_LIMIT){
+				player.extraLiveRequiredPoints-=points;
+				if(player.extraLiveRequiredPoints<=0 && player.extraLiveCount < GameConstants.PLAYER_EXTRA_LIVE_LIMIT){
 					AudioPlayer.Play(this.world,this.world.getComponentData(
 						this.world.getConfigData(GameContext).audioManager, AudioManager
 					).liveAudio);
-					player.extraLiveCount+=1;
+					player.extraLiveCount++;
 					if(player.extraLiveCount < GameConstants.PLAYER_EXTRA_LIVE_LIMIT)
-						player.extraLiveRequiredPoints=EXTRA_LIVE_POINTS;
+						player.extraLiveRequiredPoints+=EXTRA_LIVE_POINTS;
+					else
+						player.extraLiveRequiredPoints = 0
 				}
 			}
 			return player;

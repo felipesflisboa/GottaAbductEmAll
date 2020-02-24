@@ -7,6 +7,14 @@
     "Visibility": 0,
     "TypeCode": "Component",
     "Fields": [{
+        "Id": "434d8b46a05642d781096fe1a3c0e1cd",
+        "Name": "points",
+        "FieldType": { "Id": "7112767112f747e2a340404a5ceb31b5", "Name": "UInt8" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
         "Id": "f1bac8c109e9402d9c2eb86a78c0d7b5",
         "Name": "baseSpeed",
         "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
@@ -101,6 +109,7 @@
     "DefaultValue": {
         "Type": { "Id": "3f08b78ea04243fbaa34fb6d0030b7a4", "Name": "Animal" },
         "Properties": {
+            "points": 1,
             "jumpHeight": 2,
             "jumpSpeed": 20,
             "abductSpeed": 5

@@ -3,7 +3,7 @@ namespace game {
 	const BULLET_BASE_RESPAWN_TIME_RANGE : ut.Math.Range = new ut.Math.Range(0.6, 0.9);
 	const BULLET_BASE_SPEED : number = 10;
 	const BULLET_EXTRA_Y : number = 6;
-	const ANIMAL_LIMIT : number = 5;
+	const ANIMAL_LIMIT : number = 7;
 	const GAME_OVER_DELAY : number = 3;
 	const SCORE_KEY : string = "AbductTopScore";
 
@@ -231,9 +231,9 @@ namespace game {
 		}
 
 		//TODO move
-		static AddOnePoint(world: ut.World) : void {
+		static AddPoints(world:ut.World, points:number) : void {
 			let context = world.getConfigData(GameContext);
-			context.score+=1;
+			context.score+=points;
 			if(context.score >= context.usedLevelInfoArray.length)
 				context.speed = context.usedLevelInfoArray[context.usedLevelInfoArray.length - 1].speed;
 			else

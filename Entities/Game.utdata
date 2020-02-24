@@ -209,37 +209,37 @@
                 }, {
                     "Type": { "Id": "6ce1f66edc4a499980bbca7697cbf9d0", "Name": "LevelInfo" },
                     "Properties": {
-                        "score": 5,
+                        "score": 10,
                         "speed": 0.75
                     }
                 }, {
                     "Type": { "Id": "6ce1f66edc4a499980bbca7697cbf9d0", "Name": "LevelInfo" },
                     "Properties": {
-                        "score": 12,
+                        "score": 24,
                         "speed": 1.2
                     }
                 }, {
                     "Type": { "Id": "6ce1f66edc4a499980bbca7697cbf9d0", "Name": "LevelInfo" },
                     "Properties": {
-                        "score": 20,
+                        "score": 40,
                         "speed": 1.45
                     }
                 }, {
                     "Type": { "Id": "6ce1f66edc4a499980bbca7697cbf9d0", "Name": "LevelInfo" },
                     "Properties": {
-                        "score": 30,
+                        "score": 60,
                         "speed": 1.65
                     }
                 }, {
                     "Type": { "Id": "6ce1f66edc4a499980bbca7697cbf9d0", "Name": "LevelInfo" },
                     "Properties": {
-                        "score": 70,
+                        "score": 140,
                         "speed": 1.85
                     }
                 }, {
                     "Type": { "Id": "6ce1f66edc4a499980bbca7697cbf9d0", "Name": "LevelInfo" },
                     "Properties": {
-                        "score": 170,
+                        "score": 340,
                         "speed": 2.05
                     }
                 }]
@@ -1927,7 +1927,7 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 519,
+                    "x": 0,
                     "y": 7
                 }
             }

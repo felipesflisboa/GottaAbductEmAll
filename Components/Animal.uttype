@@ -76,23 +76,17 @@
     }, {
         "Id": "615afa5be63c460b8d12aa470c79fa9d",
         "Name": "nextPauseTryTime",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
         "FieldType": { "Id": "74cf32c2744342b7903871f8feb2fdd7", "Name": "Float64" },
         "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }, {
         "Id": "dd56203cdd374f2b9c620cc2d0f0a240",
         "Name": "nextMoveTime",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
         "FieldType": { "Id": "74cf32c2744342b7903871f8feb2fdd7", "Name": "Float64" },
         "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }, {
@@ -100,7 +94,7 @@
         "Name": "onTractorBeam",
         "FieldType": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" },
         "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }],

@@ -8,7 +8,7 @@ namespace game {
 		//TODO move with priority
 		OnUpdate():void {
 			let context = this.world.getConfigData(GameContext);
-			if(!context.initialized)
+			if(context.state == GameState.BeforeStart)
 				return;
 			const playerPos = this.world.getComponentData(context.player, ut.Core2D.TransformLocalPosition).position;
 			let scenery = this.world.getComponentData(context.scenery, Scenery);

@@ -4,7 +4,7 @@ namespace game {
 	export class HUDSystem extends ut.ComponentSystem {
 		OnUpdate():void {
 			const context = this.world.getConfigData(GameContext);
-			if(!context.initialized)
+			if(context.state == GameState.BeforeStart)
 				return;
 			this.world.forEach([ut.Entity, HUD],(entity, hud) => {
 				this.world.usingComponentData(hud.scoreText, [ut.Text.Text2DRenderer], (text)=>{

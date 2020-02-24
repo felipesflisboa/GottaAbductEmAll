@@ -12,40 +12,45 @@ namespace game {
 		OnUpdate():void {
 			let context = this.world.getConfigData(GameContext);
 			context.time += this.scheduler.deltaTime();
-			if(!context.initialized){
-				if(GameManagerSystem.IsTitle(this.world)){
-					if(0.5 < context.time && GameManagerSystem.HasAnyInputDown())
-						this.LoadGame();
-					this.world.setConfigData(context);
-					return;
+			switch (context.state){ 
+				case GameState.BeforeStart: {
+					if(GameManagerSystem.IsTitle(this.world))
+						this.OnTitleScreenUpdate(context);
+					else
+						context = this.Initialize(context);
+					break;
 				}
-				this.world.setConfigData(this.Initialize(context));
-				return;
+				case GameState.Ocurring: {
+					context = this.OnGameOcurringUpdate(context);
+					break;
+				}
+				case GameState.Ended: {
+					context = this.OnGameEndUpdate(context);
+					break;
+				}
 			}
+			this.world.setConfigData(context);
+		}
+
+		OnTitleScreenUpdate(context : GameContext) : void {
+			if(0.5 < context.time && GameManagerSystem.HasAnyInputDown())
+				this.LoadGame();
+		}
+
+		OnGameOcurringUpdate(context : GameContext) : GameContext{
 			if(context.nextBulletTime <= context.time)
 				context = this.SpawnBullet(context);
 			while(ANIMAL_LIMIT > context.animalCount)
 				context = this.SpawnAnimal(context);
-			if(context.ended){
-				if(context.gameOverShowTime == 0){
-					context.gameOverShowTime = GAME_OVER_DELAY + context.time;
-				}else if(context.gameOverShowTime < context.time){
-					if(context.gameOverShowTime + 0.5 < context.time && GameManagerSystem.HasAnyInputDown()){
-						this.LoadTitle();
-						return;
-					}
-				}
-			} 
-			this.world.setConfigData(context);
+			return context;
 		}
 
 		Initialize(context : GameContext) : GameContext {
 			context.scenery = this.SetupScenery();
 			context.audioManager = this.SetupAudioManager();
 			context.player = this.SetupPlayer();
-			context.initialized = true;
+			context.state == GameState.Ocurring;
 			context.gameOverShowTime = 0;
-			context.ended = false;
 			context.usedLevelInfoArray=this.GenerateUsedLevelInfoArray(this.world.getComponentData(context.scenery, Scenery).levelInfoArray);
 			context.score = 0;
 			context.topScore = GameManagerSystem.LoadTopScore();
@@ -83,15 +88,9 @@ namespace game {
 		SetupPlayer() : ut.Entity {
 			let ret = null;
 			this.world.forEach( [ut.Entity, Player],(entity, player)=>{
+				player.extraLiveCount = GameConstants.PLAYER_INITIAL_EXTRA_LIVE_COUNT;
 				ret = new ut.Entity(entity.index, entity.version);
 			});
-			return ret;
-		}
-
-		//TODO move
-		static IsTitle(world:ut.World) : boolean {
-			let ret = true;
-			world.forEach( [Scenery],(scenery) => ret = false);
 			return ret;
 		}
 
@@ -188,6 +187,17 @@ namespace game {
 			return context;
 		}
 
+		OnGameEndUpdate(context: GameContext) : GameContext{
+			if(context.gameOverShowTime == 0){
+				context.gameOverShowTime = GAME_OVER_DELAY + context.time;
+			}else if(context.gameOverShowTime < context.time){
+				if(context.gameOverShowTime + 0.5 < context.time && GameManagerSystem.HasAnyInputDown()){
+					this.LoadTitle();
+				}
+			}
+			return context;
+		}
+
 		static GetSceneryXRange(world: ut.World, scenery:Scenery): ut.Math.Range{
 			return new ut.Math.Range(
 				world.getComponentData(scenery.leftCornerZone,ut.Core2D.TransformLocalPosition).position.x - GameConstants.ZONE_WIDTH/2,
@@ -202,7 +212,7 @@ namespace game {
 
 		LoadTitle(): void {
 			let context = this.world.getConfigData(GameContext);
-			context.initialized = false;
+			context.state = GameState.BeforeStart;
 			context.time = 0;
 			this.world.setConfigData(context);
 			ut.EntityGroup.destroyAll(this.world, 'game.Game');
@@ -210,6 +220,13 @@ namespace game {
 			for(const animalEntityName of context.animalGroupNameArray)
 				ut.EntityGroup.destroyAll(this.world, animalEntityName);
 			ut.EntityGroup.instantiate(this.world, 'game.Title');
+		}
+
+		//TODO move
+		static IsTitle(world:ut.World) : boolean {
+			let ret = true;
+			world.forEach( [Scenery],(scenery) => ret = false);
+			return ret;
 		}
 
 		//TODO move

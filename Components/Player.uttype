@@ -50,39 +50,6 @@
         "EditorOnly": false,
         "Versioned": true
     }, {
-        "Id": "b29d5637d75f481697af38c5da6feede",
-        "Name": "state",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
-        "FieldType": { "Id": "98a2c1b2189b4abea067fd91865acee6", "Name": "PlayerState" },
-        "Array": false,
-        "Visibility": 0,
-        "EditorOnly": false,
-        "Versioned": true
-    }, {
-        "Id": "d22b56818f9843dd9f76b16338c493ff",
-        "Name": "endStateTime",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
-        "FieldType": { "Id": "74cf32c2744342b7903871f8feb2fdd7", "Name": "Float64" },
-        "Array": false,
-        "Visibility": 0,
-        "EditorOnly": false,
-        "Versioned": true
-    }, {
-        "Id": "63218be1aaaa4de697aa960cd8fcc74c",
-        "Name": "animalOnTractorBeamArray",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
-        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
-        "Array": true,
-        "Visibility": 0,
-        "EditorOnly": false,
-        "Versioned": true
-    }, {
         "Id": "0b54a740fd9a483ca1eaaa562a0389a2",
         "Name": "extraLiveCount",
         "FieldType": { "Id": "27c155635ccb4ab2bcb79ef5aaf129ec", "Name": "Int8" },
@@ -91,37 +58,49 @@
         "EditorOnly": false,
         "Versioned": true
     }, {
-        "Id": "54f780ca5edc4038b249f588b862f8ac",
-        "Name": "extraLiveLimit",
-        "FieldType": { "Id": "27c155635ccb4ab2bcb79ef5aaf129ec", "Name": "Int8" },
+        "Id": "b29d5637d75f481697af38c5da6feede",
+        "Name": "state",
+        "FieldType": { "Id": "98a2c1b2189b4abea067fd91865acee6", "Name": "PlayerState" },
         "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "d22b56818f9843dd9f76b16338c493ff",
+        "Name": "endStateTime",
+        "FieldType": { "Id": "74cf32c2744342b7903871f8feb2fdd7", "Name": "Float64" },
+        "Array": false,
+        "Visibility": 1,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "63218be1aaaa4de697aa960cd8fcc74c",
+        "Name": "animalOnTractorBeamArray",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": true,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }, {
         "Id": "791293519130401da043cc78a4312e73",
         "Name": "extraLiveRequiredPoints",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
-        "FieldType": { "Id": "27c155635ccb4ab2bcb79ef5aaf129ec", "Name": "Int8" },
+        "FieldType": { "Id": "7112767112f747e2a340404a5ceb31b5", "Name": "UInt8" },
         "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }],
     "DefaultValue": {
         "Type": { "Id": "38cf58bbf97c41bf873f84c7134e4a0e", "Name": "Player" },
         "Properties": {
+            "extraLiveCount": 0,
             "state": {
                 "$TypeId": 8,
                 "Type": { "Id": "98a2c1b2189b4abea067fd91865acee6", "Name": "PlayerState" },
                 "Id": "c6f4ffc7206e4bbc9953bdc4187b02a1",
                 "Name": "Alive",
                 "Value": 1
-            },
-            "extraLiveCount": 3,
-            "extraLiveLimit": 3
+            }
         }
     }
 }]

@@ -12,7 +12,7 @@
     "Fields": [{
         "Id": "020df4b1078f4f48ade2d97551797033",
         "Name": "score",
-        "FieldType": { "Id": "2aa56ce081e14e8a93d276da72d813bc", "Name": "Int16" },
+        "FieldType": { "Id": "86fa32ad22614762afdacbf4dba8180f", "Name": "UInt16" },
         "Array": false,
         "Visibility": 0,
         "EditorOnly": false,

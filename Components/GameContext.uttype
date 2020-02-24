@@ -15,36 +15,27 @@
         "EditorOnly": false,
         "Versioned": true
     }, {
-        "Id": "2cb3351ac9b54f6389cad2ee5d13906c",
-        "Name": "initialized",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
-        "FieldType": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" },
+        "Id": "4252adb5eadf4aebace04939c4146f8a",
+        "Name": "state",
+        "FieldType": { "Id": "48cffb02d8c343398c131134c61f568d", "Name": "GameState" },
         "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }, {
         "Id": "ded5c775f22544ee9eae23e3c2e53b27",
         "Name": "scenery",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
         "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
         "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }, {
         "Id": "462d3fa810c34d9d87a284d1410a1f9c",
         "Name": "player",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
         "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
         "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }, {
@@ -52,27 +43,21 @@
         "Name": "audioManager",
         "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
         "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }, {
         "Id": "0edfdc4d25a540b09c948f23a87680bf",
         "Name": "usedLevelInfoArray",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
         "FieldType": { "Id": "62d075dc19b541c4a849eaea5f90fc2e", "Name": "UsedLevelInfo" },
         "Array": true,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }, {
         "Id": "5f675a3665f04a9888e453040b288f1e",
         "Name": "score",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
-        "FieldType": { "Id": "2aa56ce081e14e8a93d276da72d813bc", "Name": "Int16" },
+        "FieldType": { "Id": "86fa32ad22614762afdacbf4dba8180f", "Name": "UInt16" },
         "Array": false,
         "Visibility": 1,
         "EditorOnly": false,
@@ -81,55 +66,35 @@
         "Id": "2ca468594fb4482eae9264f9d3d50fa8",
         "Name": "speed",
         "Documentation": {
-            "Summary": "RUNTIME\nUsed to calculate certain times"
+            "Summary": "Used to calculate certain times"
         },
         "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
         "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }, {
         "Id": "4bf02ebf0da9460e86da137919e9b440",
         "Name": "time",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
         "FieldType": { "Id": "74cf32c2744342b7903871f8feb2fdd7", "Name": "Float64" },
         "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }, {
         "Id": "5e10c69df29f46e0ba9789aa10852285",
         "Name": "nextBulletTime",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
         "FieldType": { "Id": "74cf32c2744342b7903871f8feb2fdd7", "Name": "Float64" },
         "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }, {
         "Id": "9bbdcce7cb144f94bfc6df6a4a18a362",
         "Name": "animalCount",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
-        "FieldType": { "Id": "27c155635ccb4ab2bcb79ef5aaf129ec", "Name": "Int8" },
+        "FieldType": { "Id": "7112767112f747e2a340404a5ceb31b5", "Name": "UInt8" },
         "Array": false,
-        "Visibility": 0,
-        "EditorOnly": false,
-        "Versioned": true
-    }, {
-        "Id": "3f11de65bdd844b69d2367a0df8e94ae",
-        "Name": "ended",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
-        "FieldType": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" },
-        "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }, {
@@ -137,22 +102,28 @@
         "Name": "gameOverShowTime",
         "FieldType": { "Id": "74cf32c2744342b7903871f8feb2fdd7", "Name": "Float64" },
         "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }, {
         "Id": "7455fb8c6e7c46418361a80ec499e70b",
         "Name": "topScore",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
-        "FieldType": { "Id": "2aa56ce081e14e8a93d276da72d813bc", "Name": "Int16" },
+        "FieldType": { "Id": "86fa32ad22614762afdacbf4dba8180f", "Name": "UInt16" },
         "Array": false,
-        "Visibility": 0,
+        "Visibility": 1,
         "EditorOnly": false,
         "Versioned": true
     }],
     "DefaultValue": {
-        "Type": { "Id": "d3c7b3c1b5ba41c29c071ec42e8451d7", "Name": "GameContext" }
+        "Type": { "Id": "d3c7b3c1b5ba41c29c071ec42e8451d7", "Name": "GameContext" },
+        "Properties": {
+            "state": {
+                "$TypeId": 8,
+                "Type": { "Id": "48cffb02d8c343398c131134c61f568d", "Name": "GameState" },
+                "Id": "35c06873d279497a9fd0faa8fea6dc41",
+                "Name": "BeforeStart",
+                "Value": 1
+            }
+        }
     }
 }]

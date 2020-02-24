@@ -1,0 +1,51 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "48cffb02d8c343398c131134c61f568d",
+    "Name": "GameState",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Enum",
+    "BaseType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+    "Fields": [{
+        "Id": "f8be9ce316e84a2b8b83d8cad1b3feca",
+        "Name": "None",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "35c06873d279497a9fd0faa8fea6dc41",
+        "Name": "BeforeStart",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "8d15ac22f8e8402aa1c504c534d294ec",
+        "Name": "Ocurring",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "6a69639bea014e388005f6a0123ff004",
+        "Name": "Ended",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "48cffb02d8c343398c131134c61f568d", "Name": "GameState" },
+        "Properties": {
+            "BeforeStart": 1,
+            "Ocurring": 2,
+            "Ended": 3
+        }
+    }
+}]

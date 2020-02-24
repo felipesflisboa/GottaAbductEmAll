@@ -9,7 +9,7 @@ namespace game {
 		//TODO break in methods
 		OnUpdate():void {
 			let context = this.world.getConfigData(GameContext);
-			if(!context.initialized)
+			if(context.state == GameState.BeforeStart)
 				return;
 			const scenery = this.world.getComponentData(context.scenery, Scenery);
 			const sceneryXRange = GameManagerSystem.GetSceneryXRange(this.world, scenery)

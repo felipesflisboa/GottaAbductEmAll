@@ -7,22 +7,8 @@
     "Visibility": 0,
     "TypeCode": "Component",
     "Fields": [{
-        "Id": "178c69e14ee547d58bd9e491e4b75f08",
-        "Name": "way",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
-        "FieldType": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" },
-        "Array": false,
-        "Visibility": 0,
-        "EditorOnly": false,
-        "Versioned": true
-    }, {
         "Id": "baa8fdde1055479e88ca6dd83de3b16a",
         "Name": "speed",
-        "Documentation": {
-            "Summary": "RUNTIME"
-        },
         "FieldType": { "Id": "74cf32c2744342b7903871f8feb2fdd7", "Name": "Float64" },
         "Array": false,
         "Visibility": 0,
@@ -30,9 +16,6 @@
         "Versioned": true
     }],
     "DefaultValue": {
-        "Type": { "Id": "270cd7e6e4d3426092c013b8a9c7d45c", "Name": "BackgroundShip" },
-        "Properties": {
-            "way": false
-        }
+        "Type": { "Id": "270cd7e6e4d3426092c013b8a9c7d45c", "Name": "BackgroundShip" }
     }
 }]

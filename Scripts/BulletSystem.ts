@@ -7,7 +7,7 @@ namespace game {
 	export class BulletSystem extends ut.ComponentSystem {
 		OnUpdate():void {
 			const context = this.world.getConfigData(GameContext);
-			if(!context.initialized)
+			if(context.state == GameState.BeforeStart)
 				return;
 			let playerPos = this.world.getComponentData(context.player, ut.Core2D.TransformLocalPosition).position; 
 			//TODO break in method

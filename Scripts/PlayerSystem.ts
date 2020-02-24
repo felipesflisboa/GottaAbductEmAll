@@ -10,7 +10,7 @@ namespace game {
 	export class PlayerSystem extends ut.ComponentSystem {
 		OnUpdate():void {
 			let context = this.world.getConfigData(GameContext);
-			if(!context.initialized)
+			if(context.state == GameState.BeforeStart)
 				return;
 			this.UpdateBulletCollision();
 			this.world.forEach([ut.Entity, Player, ut.Core2D.TransformLocalPosition],(entity, player, tLocalPos) => {
@@ -133,12 +133,12 @@ namespace game {
 			).pointAudio);
 			if(player.extraLiveRequiredPoints!=0){
 				player.extraLiveRequiredPoints-=1;
-				if(player.extraLiveRequiredPoints==0 && player.extraLiveCount < player.extraLiveLimit){
+				if(player.extraLiveRequiredPoints==0 && player.extraLiveCount < GameConstants.PLAYER_EXTRA_LIVE_LIMIT){
 					AudioPlayer.Play(this.world,this.world.getComponentData(
 						this.world.getConfigData(GameContext).audioManager, AudioManager
 					).liveAudio);
 					player.extraLiveCount+=1;
-					if(player.extraLiveCount < player.extraLiveLimit)
+					if(player.extraLiveCount < GameConstants.PLAYER_EXTRA_LIVE_LIMIT)
 						player.extraLiveRequiredPoints=EXTRA_LIVE_POINTS;
 				}
 			}

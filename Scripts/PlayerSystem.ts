@@ -1,6 +1,6 @@
 
 namespace game {
-	const BASE_SPEED : number = 35;
+	const SPEED : number = 35;
 	const RESPAWN_DURATION : number = 1.2;
 	const RESPAWN_INVINCIBILITY_DURATION : number = 2.4;
 	const EXTRA_LIVE_POINTS : number = 20; 
@@ -43,7 +43,7 @@ namespace game {
 					return;
 				}
 
-				let playerCurrentSpeed = BASE_SPEED*context.speed;
+				let playerCurrentSpeed = SPEED;
 				if(this.IsTractorBeamActive(player))
 					playerCurrentSpeed/=2;
 				tLocalPos.position = reusable.VectorUtil.V2To3(reusable.VectorUtil.V3To2(tLocalPos.position).add(

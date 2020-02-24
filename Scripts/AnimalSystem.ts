@@ -38,13 +38,10 @@ namespace game {
 					}
 						
 					if(animal.nextPauseTryTime == 0)
-						animal.nextPauseTryTime = animal.basePauseTryTime/context.speed+context.time;
+						animal.nextPauseTryTime = animal.pauseTryTime+context.time;
 					if(context.time > animal.nextPauseTryTime){
-						if(Math.random() <= animal.pauseRatio){
-							animal.nextMoveTime = (
-								reusable.RandomUtil.Range(animal.basePauseDurationRange)/context.speed+context.time
-							);
-						}
+						if(Math.random() <= animal.pauseRatio)
+							animal.nextMoveTime = reusable.RandomUtil.Range(animal.basePauseDurationRange) + context.time;
 						animal.nextPauseTryTime = 0;
 					}else{
 						tLocalPos.position = this.GetNewPosAfterFrame(animal, tLocalPos, tLocalRot);
@@ -75,11 +72,8 @@ namespace game {
 		}
 
 		GetNewPosAfterFrame(animal:Animal,tLocalPos:ut.Core2D.TransformLocalPosition,tLocalRot:ut.Core2D.TransformLocalRotation) : Vector3{
-			let sign = new Euler().setFromQuaternion(tLocalRot.rotation).y==0 ? 1 : -1;
-			let ret = tLocalPos.position.add(new Vector3(
-				sign*animal.baseSpeed * this.world.getConfigData(GameContext).speed * this.scheduler.deltaTime(), 0, 0
-			));
-			return ret;
+			const sign = new Euler().setFromQuaternion(tLocalRot.rotation).y==0 ? 1 : -1;
+			return tLocalPos.position.add(new Vector3(sign*animal.speed * this.scheduler.deltaTime(), 0, 0));
 		}
 	}
 }

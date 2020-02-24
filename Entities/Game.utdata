@@ -1927,7 +1927,7 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 0,
+                    "x": 640,
                     "y": 7
                 }
             }

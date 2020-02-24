@@ -16,7 +16,7 @@
         "Versioned": true
     }, {
         "Id": "f1bac8c109e9402d9c2eb86a78c0d7b5",
-        "Name": "baseSpeed",
+        "Name": "speed",
         "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
         "Array": false,
         "Visibility": 0,
@@ -24,7 +24,7 @@
         "Versioned": true
     }, {
         "Id": "a6923c05f3ba44b2b4dc42253bfe1282",
-        "Name": "basePauseTryTime",
+        "Name": "pauseTryTime",
         "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
         "Array": false,
         "Visibility": 0,

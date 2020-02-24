@@ -66,7 +66,7 @@
         "Id": "2ca468594fb4482eae9264f9d3d50fa8",
         "Name": "speed",
         "Documentation": {
-            "Summary": "Used to calculate certain times"
+            "Summary": "Used to calculate bullet\nspeed and spawn rate"
         },
         "FieldType": { "Id": "67325dccf2f047c19c7ef4a045354e67", "Name": "Float32" },
         "Array": false,

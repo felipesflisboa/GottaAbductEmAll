@@ -193,6 +193,7 @@ namespace game {
 			}else if(context.gameOverShowTime < context.time){
 				if(context.gameOverShowTime + 0.5 < context.time && GameManagerSystem.HasAnyInputDown()){
 					this.LoadTitle();
+					context = this.world.getConfigData(GameContext);
 				}
 			}
 			return context;

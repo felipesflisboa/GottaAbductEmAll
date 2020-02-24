@@ -124,9 +124,9 @@
             "backgroundColor": {
                 "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
                 "Properties": {
-                    "r": 0.7803922,
-                    "g": 0.9411765,
-                    "b": 0.8470588,
+                    "r": 0.2627451,
+                    "g": 0.3215686,
+                    "b": 0.2392157,
                     "a": 1
                 }
             },
@@ -1927,7 +1927,7 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 0,
+                    "x": 519,
                     "y": 7
                 }
             }

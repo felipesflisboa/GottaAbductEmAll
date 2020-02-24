@@ -49,7 +49,7 @@ namespace game {
 			context.scenery = this.SetupScenery();
 			context.audioManager = this.SetupAudioManager();
 			context.player = this.SetupPlayer();
-			context.state == GameState.Ocurring;
+			context.state = GameState.Ocurring;
 			context.gameOverShowTime = 0;
 			context.usedLevelInfoArray=this.GenerateUsedLevelInfoArray(this.world.getComponentData(context.scenery, Scenery).levelInfoArray);
 			context.score = 0;

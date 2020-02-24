@@ -156,7 +156,7 @@ namespace game {
 			}else{
 				//TODO move
 				player.endStateTime = 0;
-				context.ended = true;
+				context.state = GameState.Ended;
 				console.log("Duration "+GameManagerSystem.GetTimeFormatted(context));
 				if(context.score > context.topScore)
 					GameManagerSystem.SaveTopScore(context.score);

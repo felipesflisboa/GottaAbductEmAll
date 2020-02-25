@@ -83,7 +83,7 @@
         "Versioned": true
     }, {
         "Id": "791293519130401da043cc78a4312e73",
-        "Name": "extraLiveRequiredPoints",
+        "Name": "extraLiveRemainingPoints",
         "FieldType": { "Id": "7112767112f747e2a340404a5ceb31b5", "Name": "UInt8" },
         "Array": false,
         "Visibility": 1,

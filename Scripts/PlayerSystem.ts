@@ -131,17 +131,17 @@ namespace game {
 			AudioPlayer.Play(this.world,this.world.getComponentData(
 				this.world.getConfigData(GameContext).audioManager, AudioManager
 			).pointAudio);
-			if(player.extraLiveRequiredPoints!=0){
-				player.extraLiveRequiredPoints-=points;
-				if(player.extraLiveRequiredPoints<=0 && player.extraLiveCount < GameConstants.PLAYER_EXTRA_LIVE_LIMIT){
+			if(player.extraLiveRemainingPoints!=0){
+				player.extraLiveRemainingPoints-=points;
+				if(player.extraLiveRemainingPoints<=0 && player.extraLiveCount < GameConstants.PLAYER_EXTRA_LIVE_LIMIT){
 					AudioPlayer.Play(this.world,this.world.getComponentData(
 						this.world.getConfigData(GameContext).audioManager, AudioManager
 					).liveAudio);
 					player.extraLiveCount++;
 					if(player.extraLiveCount < GameConstants.PLAYER_EXTRA_LIVE_LIMIT)
-						player.extraLiveRequiredPoints+=EXTRA_LIVE_POINTS;
+						player.extraLiveRemainingPoints+=EXTRA_LIVE_POINTS;
 					else
-						player.extraLiveRequiredPoints = 0
+						player.extraLiveRemainingPoints = 0
 				}
 			}
 			return player;
@@ -151,8 +151,8 @@ namespace game {
 			let context = this.world.getConfigData(GameContext);
 			player.state = PlayerState.Dead;
 			player.extraLiveCount-=1;
-			if(player.extraLiveRequiredPoints==0)
-				player.extraLiveRequiredPoints=EXTRA_LIVE_POINTS;
+			if(player.extraLiveRemainingPoints==0)
+				player.extraLiveRemainingPoints=EXTRA_LIVE_POINTS;
 			if(player.extraLiveCount >= 0){
 				player.endStateTime = RESPAWN_DURATION + this.world.getConfigData(GameContext).time;
 			}else{

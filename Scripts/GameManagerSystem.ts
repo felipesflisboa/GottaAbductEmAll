@@ -3,7 +3,7 @@ namespace game {
 	const BULLET_BASE_RESPAWN_TIME_RANGE : ut.Math.Range = new ut.Math.Range(0.6, 0.9);
 	const BULLET_BASE_SPEED : number = 10;
 	const BULLET_EXTRA_Y : number = 6;
-	const ANIMAL_LIMIT : number = 7;
+	const ANIMAL_LIMIT : number = 10;
 	const GAME_OVER_DELAY : number = 3;
 	const SCORE_KEY : string = "AbductTopScore";
 

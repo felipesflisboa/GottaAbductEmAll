@@ -6,6 +6,18 @@
     "Unlisted": false,
     "Visibility": 0,
     "TypeCode": "Component",
+    "Fields": [{
+        "Id": "3c04134062084a35b535199bfac3e824",
+        "Name": "direction",
+        "Documentation": {
+            "Summary": "Normalized"
+        },
+        "FieldType": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+        "Array": false,
+        "Visibility": 1,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
     "DefaultValue": {
         "Type": { "Id": "4d1eeae0b85b4f379e68e16edf4fe2d6", "Name": "Bullet" }
     }

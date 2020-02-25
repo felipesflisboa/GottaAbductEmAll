@@ -12,6 +12,11 @@ namespace reusable {
 			return new Vector2(rect.x+rect.width, rect.y+rect.height);
 		}
 
+		static IsOn(rect:ut.Math.Rect, pos:Vector2|Vector3) : boolean{
+			return rect.x<pos.x && pos.x<RectUtil.Max(rect).x && rect.y<pos.y && pos.y<RectUtil.Max(rect).y;
+		}
+
+		/* // Only works when physics are defined //TODO check defined modules programmatically
 		//TODO move into collider
 		static GetRect(boxCollider: ut.Physics2D.BoxCollider2D) : ut.Math.Rect{
 			return new ut.Math.Rect(
@@ -33,9 +38,6 @@ namespace reusable {
 				scaledSize.y
 			);
 		}
-
-		static IsOn(rect:ut.Math.Rect, pos:Vector2|Vector3) : boolean{
-			return rect.x<pos.x && pos.x<RectUtil.Max(rect).x && rect.y<pos.y && pos.y<RectUtil.Max(rect).y;
-		}
+		*/
 	}
 }

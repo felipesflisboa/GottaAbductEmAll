@@ -1,7 +1,6 @@
 
 namespace game {
 	const BULLET_BASE_RESPAWN_TIME_RANGE : ut.Math.Range = new ut.Math.Range(0.6, 0.9);
-	const BULLET_BASE_SPEED : number = 10;
 	const BULLET_EXTRA_Y : number = 6;
 	const ANIMAL_LIMIT : number = 10;
 	const GAME_OVER_DELAY : number = 3;
@@ -112,18 +111,16 @@ namespace game {
 		SpawnBullet(context : GameContext){
 			let scenery  = this.world.getComponentData(context.scenery, Scenery);
 			let bulletSpawnArea  = scenery.bulletSpawnArea;
-			let bullet = ut.EntityGroup.instantiate(this.world, 'game.Bullet')[0];
-			this.world.usingComponentData(bullet, [ut.Core2D.TransformLocalPosition, ut.Physics2D.Velocity2D], (tLocalPos, velocity)=>{
+			let bulletEntity = ut.EntityGroup.instantiate(this.world, 'game.Bullet')[0];
+			this.world.usingComponentData(bulletEntity, [Bullet, ut.Core2D.TransformLocalPosition], (bullet, tLocalPos)=>{
 				const playerPos = this.world.getComponentData(context.player, ut.Core2D.TransformLocalPosition).position;
-				let xSign = this.GetBulletXSign();
+				const xSign = this.GetBulletXSign();
 				tLocalPos.position = playerPos.add(new Vector3(
 					xSign*bulletSpawnArea.x,
 					reusable.RandomUtil.Range(bulletSpawnArea.y, reusable.RectUtil.Max(bulletSpawnArea).y),
 					0
 				));
-				let setVelocity = new ut.Physics2D.SetVelocity2D();
-				setVelocity.velocity = this.GetBulletVelocity(context, scenery, tLocalPos.position.y, xSign);
-				this.world.addComponentData(bullet, setVelocity);
+				bullet.direction = this.GetBulletDirection(context, scenery, tLocalPos.position.y, xSign);
 			});
 			context.nextBulletTime = context.time + reusable.RandomUtil.Range(BULLET_BASE_RESPAWN_TIME_RANGE)/context.speed;
 			return context;
@@ -133,8 +130,8 @@ namespace game {
 			let xSign = 0;
 			let bulletFromLeft = 0;
 			let bulletFromRight = 0;
-			this.world.forEach( [Bullet, ut.Physics2D.Velocity2D],(bullet, velocity)=>{
-				if(velocity.velocity.x > 0)
+			this.world.forEach( [Bullet],(bullet)=>{
+				if(bullet.direction.x > 0)
 					bulletFromLeft++;
 				else
 					bulletFromRight++;
@@ -151,7 +148,7 @@ namespace game {
 			return xSign;
 		}
 
-		GetBulletVelocity(context : GameContext, scenery : Scenery, localBulletPosY:number, xSign:number) : Vector2{
+		GetBulletDirection(context : GameContext, scenery : Scenery, localBulletPosY:number, xSign:number) : Vector2{
 			let ret = new Vector2();
 			ret.x = -xSign*scenery.bulletSpawnArea.x*2;
 			ret.y = reusable.RandomUtil.Range(GameConstants.Y_MOVEMENT_RANGE) - localBulletPosY;
@@ -160,7 +157,6 @@ namespace game {
 			if(localBulletPosY > GameConstants.Y_MOVEMENT_RANGE.end)
 				ret.y += GameConstants.Y_MOVEMENT_RANGE.end - localBulletPosY;
 			ret.normalize();
-			ret.multiplyScalar(context.speed * BULLET_BASE_SPEED);
 			return ret;
 		}
 

@@ -65,13 +65,16 @@ namespace game {
 		}
 
 		UpdateBulletCollision() : void{
-			this.world.forEach([ut.Entity, Player, ut.HitBox2D.HitBoxOverlapResults],(entity, player, overlap) => {
+			this.world.forEach([Player, ut.HitBox2D.HitBoxOverlapResults],(player, overlap) => {
 				if(player.state != PlayerState.Alive)
 					return;
 				for (let o of overlap.overlaps) {
 					if (!this.world.hasComponent(o.otherEntity, Bullet))
 						continue;   
-					ut.Core2D.TransformService.destroyTree(this.world, o.otherEntity, true);
+					this.world.usingComponentData(o.otherEntity, [ut.Core2D.TransformLocalPosition], (tLocalPos)=>{
+						// Or this mess when iterating on UpdateTractorBeamAnimals. This automatically will be destroyed for being out of range
+						tLocalPos.position = tLocalPos.position.add(new Vector3(2000, 0, 0));
+					});
 					player = this.Explode(player);
 					break;
 				};
@@ -81,7 +84,7 @@ namespace game {
 		UpdateTractorBeamAnimals(playerEntity:ut.Entity, player:Player) : Player{
 			if(this.world.hasComponent(playerEntity, ut.HitBox2D.HitBoxOverlapResults)){
 				for (let o of this.world.getComponentData(playerEntity, ut.HitBox2D.HitBoxOverlapResults).overlaps) {
-					if (!this.world.hasComponent(o.otherEntity, Animal))
+					if (o.otherEntity.isNone() || !this.world.hasComponent(o.otherEntity, Animal))
 						continue;
 					player = this.AddPoints(player, this.world.getComponentData(o.otherEntity, Animal).points);
 					reusable.GeneralUtil.SetActiveRecursively(this.world, o.otherEntity, false);  

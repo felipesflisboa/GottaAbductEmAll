@@ -10,7 +10,7 @@ namespace game {
 	export class PlayerSystem extends ut.ComponentSystem {
 		OnUpdate():void {
 			let context = this.world.getConfigData(GameContext);
-			if(context.state == GameState.BeforeStart)
+			if(context.state == GameState.BeforeStart || context.paused)
 				return;
 			this.UpdateBulletCollision();
 			this.world.forEach([ut.Entity, Player, ut.Core2D.TransformLocalPosition],(entity, player, tLocalPos) => {

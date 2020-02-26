@@ -8,7 +8,7 @@ namespace game {
 	export class BulletSystem extends ut.ComponentSystem {
 		OnUpdate():void {
 			const context = this.world.getConfigData(GameContext);
-			if(context.state == GameState.BeforeStart)
+			if(context.state == GameState.BeforeStart || context.paused)
 				return;
 			let playerPos = this.world.getComponentData(context.player, ut.Core2D.TransformLocalPosition).position; 
 			this.world.forEach([ut.Entity, Bullet, ut.Core2D.TransformLocalPosition], (entity, bullet, tLocalPos) => {

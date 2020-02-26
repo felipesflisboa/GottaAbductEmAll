@@ -1,5 +1,4 @@
 namespace game {
-	@ut.requiredComponents(HUD)
 	@ut.executeAfter(ut.Shared.UserCodeStart)
 	export class HUDSystem extends ut.ComponentSystem {
 		OnUpdate():void {
@@ -13,14 +12,6 @@ namespace game {
 				this.world.usingComponentData(hud.topScoreText, [ut.Text.Text2DRenderer], (text)=>{
 					text.text = reusable.GeneralUtil.ExactDigits(Math.max(context.score, context.topScore),3);
 				});
-				if(
-					context.gameOverShowTime != 0 && 
-					context.gameOverShowTime < context.time && 
-					this.world.hasComponent(hud.gameOverRect, ut.Disabled)
-				){
-					this.world.removeComponent(hud.gameOverRect, ut.Disabled);
-					AudioPlayer.Play(this.world, this.world.getComponentData(context.audioManager, AudioManager).gameOverAudio);
-				}
 			});
 			this.world.forEach([ut.Entity, HUDHeart],(entity, heart) => {
 				let shouldBeActive = heart.index <= this.world.getComponentData(context.player, Player).extraLiveCount;

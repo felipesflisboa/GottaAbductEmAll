@@ -10,7 +10,8 @@ namespace game {
 	export class GameManagerSystem extends ut.ComponentSystem {
 		OnUpdate():void {
 			let context = this.world.getConfigData(GameContext);
-			context.time += this.scheduler.deltaTime();
+			if(!context.paused)
+				context.time += this.scheduler.deltaTime();
 			switch (context.state){ 
 				case GameState.BeforeStart: {
 					if(GameManagerSystem.IsTitle(this.world))
@@ -37,10 +38,14 @@ namespace game {
 		}
 
 		OnGameOcurringUpdate(context : GameContext) : GameContext{
-			if(context.nextBulletTime <= context.time)
-				context = this.SpawnBullet(context);
-			while(ANIMAL_LIMIT > context.animalCount)
-				context = this.SpawnAnimal(context);
+			if(this.GetPauseKeyDown())
+				context.paused = !context.paused;
+			if(!context.paused){
+				if(context.nextBulletTime <= context.time)
+					context = this.SpawnBullet(context);
+				while(ANIMAL_LIMIT > context.animalCount)
+					context = this.SpawnAnimal(context);
+			}
 			return context;
 		}
 
@@ -49,6 +54,7 @@ namespace game {
 			context.audioManager = this.SetupAudioManager();
 			context.player = this.SetupPlayer();
 			context.state = GameState.Ocurring;
+			context.paused = false;
 			context.gameOverShowTime = 0;
 			context.usedLevelInfoArray=this.GenerateUsedLevelInfoArray(this.world.getComponentData(context.scenery, Scenery).levelInfoArray);
 			context.score = 0;
@@ -200,6 +206,15 @@ namespace game {
 				world.getComponentData(scenery.leftCornerZone,ut.Core2D.TransformLocalPosition).position.x - GameConstants.ZONE_WIDTH/2,
 				world.getComponentData(scenery.rightCornerZone,ut.Core2D.TransformLocalPosition).position.x + GameConstants.ZONE_WIDTH/2,
 			);
+		}
+
+		GetPauseKeyDown() : boolean {
+			return reusable.GeneralUtil.GetKeyDown([
+				ut.Core2D.KeyCode.P, 
+				ut.Core2D.KeyCode.KeypadEnter, 
+				ut.Core2D.KeyCode.Return,
+				ut.Core2D.KeyCode.Escape
+			]);
 		}
 
 		LoadGame() : void{

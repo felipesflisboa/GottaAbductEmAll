@@ -1,0 +1,29 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "3d2ecbe75ae14f3d85fbe32bffc296e2",
+    "Name": "GameCanvas",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "31fd546b120b42aaa34e16363a7ca93a",
+        "Name": "pauseRect",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "28e57dccf9784002a0187f87fe2d0bc0",
+        "Name": "gameOverRect",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "3d2ecbe75ae14f3d85fbe32bffc296e2", "Name": "GameCanvas" }
+    }
+}]

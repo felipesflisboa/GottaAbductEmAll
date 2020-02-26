@@ -11,7 +11,7 @@ namespace game {
 		//TODO break in methods
 		OnUpdate():void {
 			const context = this.world.getConfigData(GameContext);
-			if(context.state == GameState.BeforeStart)
+			if(context.state == GameState.BeforeStart || context.paused)
 				return;
 			const scenery = this.world.getComponentData(context.scenery, Scenery);
 			const sceneryXRange = GameManagerSystem.GetSceneryXRange(this.world, scenery)

@@ -18,6 +18,6 @@ ehthumbs.db
 # ================ #
 # Repository Metas #
 # ================ #
-.gitignore.meta
 README.md.meta
 LICENSE.meta
+.index.html.meta

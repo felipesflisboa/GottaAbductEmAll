@@ -16,6 +16,8 @@ namespace game {
 				}
 				if(this.world.hasComponent(canvas.pauseRect, ut.Disabled) == context.paused)
 					reusable.GeneralUtil.SetActiveRecursively(this.world, canvas.pauseRect, context.paused);
+					if(!this.world.hasComponent(canvas.fadeRect, ut.Disabled))
+						reusable.GeneralUtil.SetActiveRecursively(this.world, canvas.fadeRect, false);
 			});
 		}
 	}

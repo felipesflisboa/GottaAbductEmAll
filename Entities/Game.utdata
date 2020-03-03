@@ -1610,7 +1610,7 @@
                     { "$TypeId": 10, "Guid": "5f36adee0f55be64ab712aa94b9f4914", "FileId": 21300000, "Type": 3 }
                 ]
             },
-            "frameRate": 12
+            "frameRate": 8
         }
     }, {
         "Type": { "Id": "d2cfd18aa4facc33b1da7ae05205691b", "Name": "Sprite2DSequencePlayer" },
@@ -1854,7 +1854,7 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 0,
+                    "x": 640,
                     "y": 7
                 }
             }
@@ -2830,8 +2830,8 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 0,
-                    "y": 0
+                    "x": 640,
+                    "y": 480
                 }
             }
         }
@@ -4010,8 +4010,8 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 0,
-                    "y": 0
+                    "x": 640,
+                    "y": 480
                 }
             }
         }

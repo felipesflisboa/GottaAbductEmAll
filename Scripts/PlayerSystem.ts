@@ -34,7 +34,7 @@ namespace game {
 						player.explosionGraphic, 
 						[ut.Core2D.Sprite2DRenderer, ut.Core2D.Sprite2DSequencePlayer], 
 						(spriteRenderer, sequencePlayer)=>{
-							if(sequencePlayer.time > 0.4){
+							if(sequencePlayer.time > 0.6){
 								sequencePlayer.paused = true;
 								spriteRenderer.color = new ut.Core2D.Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0); 
 							}
@@ -144,7 +144,7 @@ namespace game {
 					if(player.extraLiveCount < GameConstants.PLAYER_EXTRA_LIVE_LIMIT)
 						player.extraLiveRemainingPoints+=EXTRA_LIVE_POINTS;
 					else
-						player.extraLiveRemainingPoints = 0
+						player.extraLiveRemainingPoints = 0;
 				}
 			}
 			return player;

@@ -400,7 +400,16 @@
     "Components": [{
         "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
         "Properties": {
-            "sprite": { "$TypeId": 10, "Guid": "e879bbfdf14086e4eb75d5b774c4edf8", "FileId": 21300000, "Type": 3 }
+            "sprite": { "$TypeId": 10, "Guid": "cf72442813751d9418826a154aa264aa", "FileId": 21300002, "Type": 3 },
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 0.7803922,
+                    "g": 0.9411765,
+                    "b": 0.8470588,
+                    "a": 1
+                }
+            }
         }
     }, {
         "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }

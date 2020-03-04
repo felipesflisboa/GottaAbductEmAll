@@ -117,13 +117,13 @@
     }, {
         "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
         "Properties": {
-            "sprite": { "$TypeId": 10, "Guid": "570e69c6d1a77f0458b59ae8df90bee0", "FileId": 21300000, "Type": 3 },
+            "sprite": { "$TypeId": 10, "Guid": "cf72442813751d9418826a154aa264aa", "FileId": 21300012, "Type": 3 },
             "color": {
                 "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
                 "Properties": {
-                    "r": 1,
-                    "g": 1,
-                    "b": 1,
+                    "r": 0.7803922,
+                    "g": 0.9411765,
+                    "b": 0.8470588,
                     "a": 1
                 }
             }

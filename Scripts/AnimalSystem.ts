@@ -24,6 +24,11 @@ namespace game {
 					}
 					tLocalPos.position = this.GetClampedPosOnScenery(tLocalPos.position, sceneryXRange); 
 
+					if(context.time > 0.1 && this.ShouldDespawn(tLocalPos.position)){
+						this.Despawn(this.world.getComponentData(entity, ut.Entity));
+						return;
+					}
+
 					if(animal.nextMoveTime != 0){
 						if(animal.nextMoveTime > context.time)
 							return;
@@ -55,6 +60,20 @@ namespace game {
 			if(sceneryXRange.end<pos.x)
 				pos.x-=sceneryXRange.end-sceneryXRange.start;
 			return pos;
+		}
+
+		ShouldDespawn(pos:Vector3) : Boolean{
+			const playerPosX = this.world.getComponentData(
+				this.world.getConfigData(GameContext).player, ut.Core2D.TransformLocalPosition
+			).position.x;
+			return Math.abs(playerPosX - pos.x) >= GameConstants.ANIMAL_DESPAWN_MIN_DISTANCE;
+		}
+
+		Despawn(entity:ut.Entity) : void{
+			reusable.GeneralUtil.SetActiveRecursively(this.world, entity, false);
+			let context = this.world.getConfigData(GameContext);
+			context.animalCount--;
+			this.world.setConfigData(context);
 		}
 
 		ShouldRunFromTractorBeam(pos:Vector3, rot:Quaternion) : Boolean{

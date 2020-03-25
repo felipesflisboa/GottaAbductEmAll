@@ -6,6 +6,7 @@
     "SerializedVersion": 0,
     "Entities": [
         { "$TypeId": 9, "Id": "08e235db859b45b2a12fe841106e0662", "Name": "WorldCamera" },
+        { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" },
         { "$TypeId": 9, "Id": "70ff069afcb14cfa91906678493a41e1", "Name": "CanvasCamera" },
         { "$TypeId": 9, "Id": "24c95e2b57664421a478d29a62802f66", "Name": "Scenery" },
         { "$TypeId": 9, "Id": "d1fa2185383a4a46b86158ac08813e2e", "Name": "Mockup" },
@@ -50,6 +51,7 @@
         { "$TypeId": 9, "Id": "8d2c45c1b66e449b8c03b074b7c11d58", "Name": "ExplosionSprite" },
         { "$TypeId": 9, "Id": "c26b79b5957c4312abfe925b9a30da12", "Name": "Background" },
         { "$TypeId": 9, "Id": "ffc7ed9f1a7f4c91adc8a7c976053cf9", "Name": "Canvas" },
+        { "$TypeId": 9, "Id": "b53c4a17802c444bb0add79a968a777b", "Name": "pnlMain" },
         { "$TypeId": 9, "Id": "5005993a89d74c2a802a7f68c4c4335d", "Name": "pnlHUD" },
         { "$TypeId": 9, "Id": "2568e160fe5d4efcb19dcb59b165f614", "Name": "imgBackground" },
         { "$TypeId": 9, "Id": "b632a91a390a4a3487d59d61e48b9e5a", "Name": "pnlHeart" },
@@ -86,9 +88,11 @@
         { "$TypeId": 9, "Id": "69cb5ffdfcb64439ae7ec4218148ea32", "Name": "GameOver" }
     ],
     "PrefabInstances": [
+        { "$TypeId": 13, "Id": "12914aa7fe174a549c8fc91b2f453077", "Name": "CellSkin" },
         { "$TypeId": 13, "Id": "d85c88ee7c6a405f9b85fc73769e697a", "Name": "Heart" },
         { "$TypeId": 13, "Id": "8a7316738a24445f9199abb9e39ccca7", "Name": "Heart" },
-        { "$TypeId": 13, "Id": "3f4afbc9926442a4a05370b227eeb81d", "Name": "Heart" }
+        { "$TypeId": 13, "Id": "3f4afbc9926442a4a05370b227eeb81d", "Name": "Heart" },
+        { "$TypeId": 13, "Id": "260e122df4ea4135b0b8e722e55d26a6", "Name": "WorldCamera" }
     ]
 },
 {
@@ -122,48 +126,51 @@
     ]
 },
 {
+    "$TypeId": 12,
+    "Id": "260e122df4ea4135b0b8e722e55d26a6",
+    "Name": "WorldCamera",
+    "Source": { "Id": "8db7a6b05a2c453093eef7da6f67c94f", "Name": "WorldCamera" },
+    "Entities": [
+        { "$TypeId": 9, "Id": "08e235db859b45b2a12fe841106e0662", "Name": "WorldCamera" },
+        { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+    ]
+},
+{
     "$TypeId": 5,
     "Id": "08e235db859b45b2a12fe841106e0662",
     "Name": "WorldCamera",
     "Enabled": true,
     "Static": false,
     "Layer": 0,
-    "Components": [{
-        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
-    }, {
-        "Type": { "Id": "12692383f3fef3bb74c209888c5b0939", "Name": "Camera2D" },
-        "Properties": {
-            "halfVerticalSize": 24,
-            "backgroundColor": {
-                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
-                "Properties": {
-                    "r": 0.2627451,
-                    "g": 0.3215686,
-                    "b": 0.2392157,
-                    "a": 1
-                }
-            },
-            "clearFlags": {
-                "$TypeId": 8,
-                "Type": { "Id": "76a06ddd38e99125d930e77c6a287872", "Name": "CameraClearFlags" },
-                "Id": "9faedc246f34513076701ef66b5ad74f",
-                "Name": "SolidColor",
-                "Value": 1
-            },
-            "depth": -1,
-            "layerMask": 791
-        }
-    }, {
-        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
-        "Properties": {
-            "position": {
-                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
-                "Properties": {
-                    "x": 0
-                }
-            }
-        }
-    }]
+    "Components": [],
+    "Instance": {
+        "Source": { "$TypeId": 9, "Id": "3dd78916582949898d40def4c6af90b9", "Name": "WorldCamera" },
+        "EntityModificationFlags": 0,
+        "Modifications": [{
+            "Target": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+            "Path": "position.y",
+            "TypeCode": 13,
+            "Value": -56
+        }, {
+            "Target": { "Id": "12692383f3fef3bb74c209888c5b0939", "Name": "Camera2D" },
+            "Path": "layerMask",
+            "TypeCode": 9,
+            "Value": 791
+        }]
+    }
+},
+{
+    "$TypeId": 5,
+    "Id": "51f3a20ac3c74ec388f1c5a256ac7072",
+    "Name": "CellSkin",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [],
+    "Instance": {
+        "Source": { "$TypeId": 9, "Id": "d8af6d0041374637a96d0a3ffd9678de", "Name": "CellSkin" },
+        "EntityModificationFlags": 0
+    }
 },
 {
     "$TypeId": 5,
@@ -177,7 +184,7 @@
     }, {
         "Type": { "Id": "12692383f3fef3bb74c209888c5b0939", "Name": "Camera2D" },
         "Properties": {
-            "halfVerticalSize": 24,
+            "halfVerticalSize": 96,
             "backgroundColor": {
                 "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
                 "Properties": {
@@ -196,7 +203,8 @@
             "position": {
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
-                    "x": 0
+                    "x": 0,
+                    "y": -56
                 }
             }
         }
@@ -1835,8 +1843,8 @@
             "referenceResolution": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 84,
-                    "y": 48
+                    "x": 104,
+                    "y": 192
                 }
             },
             "matchWidthOrHeight": 1
@@ -1852,6 +1860,90 @@
 },
 {
     "$TypeId": 5,
+    "Id": "b53c4a17802c444bb0add79a968a777b",
+    "Name": "pnlMain",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 5,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "ffc7ed9f1a7f4c91adc8a7c976053cf9", "Name": "Canvas" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "y": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "2266a95f5d16ca1ddde710d7c047ba69", "Name": "TransformLocalRotation" }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" }
+    }, {
+        "Type": { "Id": "5ddde0b906f5f2c3b13d17f455d6ef5e", "Name": "RectTransform" },
+        "Properties": {
+            "anchorMin": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0.5,
+                    "y": 0.5
+                }
+            },
+            "anchorMax": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0.5,
+                    "y": 0.5
+                }
+            },
+            "sizeDelta": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 84,
+                    "y": 48
+                }
+            },
+            "anchoredPosition": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 0,
+                    "y": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "be2f221c9af74ec5c0a4495a2d6769a3", "Name": "Sprite2DRendererOptions" },
+        "Properties": {
+            "size": {
+                "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
+                "Properties": {
+                    "x": 84,
+                    "y": 48
+                }
+            }
+        }
+    }]
+},
+{
+    "$TypeId": 5,
     "Id": "5005993a89d74c2a802a7f68c4c4335d",
     "Name": "pnlHUD",
     "Enabled": true,
@@ -1860,7 +1952,7 @@
     "Components": [{
         "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
         "Properties": {
-            "parent": { "$TypeId": 9, "Id": "ffc7ed9f1a7f4c91adc8a7c976053cf9", "Name": "Canvas" }
+            "parent": { "$TypeId": 9, "Id": "b53c4a17802c444bb0add79a968a777b", "Name": "pnlMain" }
         }
     }, {
         "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
@@ -1998,7 +2090,7 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 0,
+                    "x": 84,
                     "y": 7
                 }
             }
@@ -2861,7 +2953,7 @@
     "Components": [{
         "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
         "Properties": {
-            "parent": { "$TypeId": 9, "Id": "ffc7ed9f1a7f4c91adc8a7c976053cf9", "Name": "Canvas" }
+            "parent": { "$TypeId": 9, "Id": "b53c4a17802c444bb0add79a968a777b", "Name": "pnlMain" }
         }
     }, {
         "Type": { "Id": "5ddde0b906f5f2c3b13d17f455d6ef5e", "Name": "RectTransform" },
@@ -2990,7 +3082,7 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 84.07742,
+                    "x": 84,
                     "y": 48
                 }
             }
@@ -4036,7 +4128,7 @@
     "Components": [{
         "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
         "Properties": {
-            "parent": { "$TypeId": 9, "Id": "ffc7ed9f1a7f4c91adc8a7c976053cf9", "Name": "Canvas" }
+            "parent": { "$TypeId": 9, "Id": "b53c4a17802c444bb0add79a968a777b", "Name": "pnlMain" }
         }
     }, {
         "Type": { "Id": "5ddde0b906f5f2c3b13d17f455d6ef5e", "Name": "RectTransform" },
@@ -4128,7 +4220,7 @@
     "Components": [{
         "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
         "Properties": {
-            "parent": { "$TypeId": 9, "Id": "ffc7ed9f1a7f4c91adc8a7c976053cf9", "Name": "Canvas" }
+            "parent": { "$TypeId": 9, "Id": "b53c4a17802c444bb0add79a968a777b", "Name": "pnlMain" }
         }
     }, {
         "Type": { "Id": "5ddde0b906f5f2c3b13d17f455d6ef5e", "Name": "RectTransform" },
@@ -4195,7 +4287,7 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 84.07742,
+                    "x": 84,
                     "y": 48
                 }
             }

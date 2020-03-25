@@ -5,8 +5,8 @@
     "ExportFlags": 0,
     "SerializedVersion": 7,
     "Settings": {
-        "CanvasWidth": 336,
-        "CanvasHeight": 192,
+        "CanvasWidth": 432,
+        "CanvasHeight": 672,
         "EmbedAssets": true,
         "CanvasAutoResize": false,
         "RenderMode": 0,
@@ -78,8 +78,8 @@
     "Components": [{
         "Type": { "Id": "575fe161bc06950c954480d04c70c9ab", "Name": "DisplayInfo" },
         "Properties": {
-            "width": 336,
-            "height": 192,
+            "width": 432,
+            "height": 672,
             "autoSizeToFrame": false
         }
     }, {

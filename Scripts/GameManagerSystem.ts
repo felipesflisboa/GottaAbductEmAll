@@ -1,6 +1,8 @@
 
 namespace game {
 	const BULLET_BASE_RESPAWN_TIME_RANGE : ut.Math.Range = new ut.Math.Range(0.6, 0.9);
+	const BULLET_LIMIT_BEFORE_SLOW_RESPAWN : number = 10;
+	const BULLET_RESPAWN_SLOW_MULTIPIER : number = 2;
 	const BULLET_EXTRA_Y : number = 6;
 	const ANIMAL_LIMIT : number = 7;
 	const GAME_OVER_DELAY : number = 3;
@@ -126,10 +128,20 @@ namespace game {
 					reusable.RandomUtil.Range(bulletSpawnArea.y, reusable.RectUtil.Max(bulletSpawnArea).y),
 					0
 				));
-				bullet.direction = this.GetBulletDirection(context, scenery, tLocalPos.position.y, xSign);
+				bullet.direction = this.GetBulletDirection(scenery, tLocalPos.position.y, xSign);
 			});
-			context.nextBulletTime = context.time + reusable.RandomUtil.Range(BULLET_BASE_RESPAWN_TIME_RANGE)/context.speed;
+			let multiplier = this.GetBulletCount() > BULLET_LIMIT_BEFORE_SLOW_RESPAWN ? BULLET_RESPAWN_SLOW_MULTIPIER : 1;
+			//if(multiplier > 1) //remove
+			// console.log("Next bullet time="+(multiplier*reusable.RandomUtil.Range(BULLET_BASE_RESPAWN_TIME_RANGE)/context.speed)); //remove
+			context.nextBulletTime = context.time + multiplier*reusable.RandomUtil.Range(BULLET_BASE_RESPAWN_TIME_RANGE)/context.speed;
 			return context;
+		}
+
+		// Maybe count in a variable
+		GetBulletCount() : number {
+			let ret = 0;
+			this.world.forEach([Bullet],(bullet)=> ret++);
+			return ret;
 		}
 
 		GetBulletXSign() : number {
@@ -154,7 +166,7 @@ namespace game {
 			return xSign;
 		}
 
-		GetBulletDirection(context : GameContext, scenery : Scenery, localBulletPosY:number, xSign:number) : Vector2{
+		GetBulletDirection(scenery : Scenery, localBulletPosY:number, xSign:number) : Vector2{
 			let ret = new Vector2();
 			ret.x = -xSign*scenery.bulletSpawnArea.x*2;
 			ret.y = reusable.RandomUtil.Range(GameConstants.Y_MOVEMENT_RANGE) - localBulletPosY;

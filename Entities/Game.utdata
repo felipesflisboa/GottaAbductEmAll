@@ -7,7 +7,7 @@
     "Entities": [
         { "$TypeId": 9, "Id": "08e235db859b45b2a12fe841106e0662", "Name": "WorldCamera" },
         { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" },
-        { "$TypeId": 9, "Id": "70ff069afcb14cfa91906678493a41e1", "Name": "CanvasCamera" },
+        { "$TypeId": 9, "Id": "1cb905a13e2f452da3480b4c49d8de00", "Name": "CanvasCamera" },
         { "$TypeId": 9, "Id": "24c95e2b57664421a478d29a62802f66", "Name": "Scenery" },
         { "$TypeId": 9, "Id": "d1fa2185383a4a46b86158ac08813e2e", "Name": "Mockup" },
         { "$TypeId": 9, "Id": "42a038633c9e4156903036a04b50fa8b", "Name": "Zones" },
@@ -81,6 +81,7 @@
         { "$TypeId": 9, "Id": "57396077cc504a72a46bfe360cbda7c4", "Name": "imgTurle" },
         { "$TypeId": 9, "Id": "d527d26805004bc6bb1f4652cab18f6e", "Name": "lblGameOver" },
         { "$TypeId": 9, "Id": "a6f2cf1d18944286af14ea60a240ddbc", "Name": "imgFade" },
+        { "$TypeId": 9, "Id": "2f57d8e36fad4d4bb6e0e10d0a6d3e1b", "Name": "Entity" },
         { "$TypeId": 9, "Id": "a53e98a1f37744da801f768ac02753da", "Name": "AudioManager" },
         { "$TypeId": 9, "Id": "27e977e1529e425fb1dcfc8efc68978a", "Name": "Point" },
         { "$TypeId": 9, "Id": "e1e92c9ff6a746f6884a176669e2d007", "Name": "Live" },
@@ -88,11 +89,20 @@
         { "$TypeId": 9, "Id": "69cb5ffdfcb64439ae7ec4218148ea32", "Name": "GameOver" }
     ],
     "PrefabInstances": [
-        { "$TypeId": 13, "Id": "12914aa7fe174a549c8fc91b2f453077", "Name": "CellSkin" },
+        { "$TypeId": 13, "Id": "260e122df4ea4135b0b8e722e55d26a6", "Name": "WorldCamera" },
         { "$TypeId": 13, "Id": "d85c88ee7c6a405f9b85fc73769e697a", "Name": "Heart" },
         { "$TypeId": 13, "Id": "8a7316738a24445f9199abb9e39ccca7", "Name": "Heart" },
-        { "$TypeId": 13, "Id": "3f4afbc9926442a4a05370b227eeb81d", "Name": "Heart" },
-        { "$TypeId": 13, "Id": "260e122df4ea4135b0b8e722e55d26a6", "Name": "WorldCamera" }
+        { "$TypeId": 13, "Id": "3f4afbc9926442a4a05370b227eeb81d", "Name": "Heart" }
+    ]
+},
+{
+    "$TypeId": 12,
+    "Id": "260e122df4ea4135b0b8e722e55d26a6",
+    "Name": "WorldCamera",
+    "Source": { "Id": "8db7a6b05a2c453093eef7da6f67c94f", "Name": "WorldCamera" },
+    "Entities": [
+        { "$TypeId": 9, "Id": "08e235db859b45b2a12fe841106e0662", "Name": "WorldCamera" },
+        { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
     ]
 },
 {
@@ -123,16 +133,6 @@
     "Entities": [
         { "$TypeId": 9, "Id": "a12e77b3b936407c8082de532f9ea236", "Name": "Heart" },
         { "$TypeId": 9, "Id": "56059905c9ec42d39417d57128508aff", "Name": "imgEmpty" }
-    ]
-},
-{
-    "$TypeId": 12,
-    "Id": "260e122df4ea4135b0b8e722e55d26a6",
-    "Name": "WorldCamera",
-    "Source": { "Id": "8db7a6b05a2c453093eef7da6f67c94f", "Name": "WorldCamera" },
-    "Entities": [
-        { "$TypeId": 9, "Id": "08e235db859b45b2a12fe841106e0662", "Name": "WorldCamera" },
-        { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
     ]
 },
 {
@@ -174,7 +174,7 @@
 },
 {
     "$TypeId": 5,
-    "Id": "70ff069afcb14cfa91906678493a41e1",
+    "Id": "1cb905a13e2f452da3480b4c49d8de00",
     "Name": "CanvasCamera",
     "Enabled": true,
     "Static": false,
@@ -1832,7 +1832,7 @@
     }, {
         "Type": { "Id": "757a06c4ae1ec5fccccd28eb89a6dc54", "Name": "UICanvas" },
         "Properties": {
-            "camera": { "$TypeId": 9, "Id": "70ff069afcb14cfa91906678493a41e1", "Name": "CanvasCamera" },
+            "camera": { "$TypeId": 9, "Id": "1cb905a13e2f452da3480b4c49d8de00", "Name": "CanvasCamera" },
             "uiScaleMode": {
                 "$TypeId": 8,
                 "Type": { "Id": "0accc10de1131b44701da611a92a0f65", "Name": "UIScaleMode" },
@@ -2031,7 +2031,8 @@
             "position": {
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
-                    "y": -3.5
+                    "x": 0,
+                    "y": -3
                 }
             }
         }
@@ -2059,15 +2060,15 @@
             "sizeDelta": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 0,
-                    "y": 0
+                    "x": 2,
+                    "y": 1
                 }
             },
             "anchoredPosition": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
                     "x": 0,
-                    "y": 0
+                    "y": 0.5
                 }
             }
         }
@@ -2090,8 +2091,8 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 84,
-                    "y": 7
+                    "x": 86,
+                    "y": 8
                 }
             }
         }
@@ -3037,8 +3038,8 @@
             "sizeDelta": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 0,
-                    "y": 0
+                    "x": 2,
+                    "y": 2
                 }
             },
             "anchoredPosition": {
@@ -3055,7 +3056,8 @@
             "position": {
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
-                    "y": 20.5
+                    "x": 0,
+                    "y": 0
                 }
             }
         }
@@ -3082,8 +3084,8 @@
             "size": {
                 "Type": { "Id": "3abb69286ddfc2d1c617a173c1eeb35d", "Name": "Vector2" },
                 "Properties": {
-                    "x": 84,
-                    "y": 48
+                    "x": 86,
+                    "y": 50
                 }
             }
         }
@@ -4298,6 +4300,14 @@
             "order": 5
         }
     }]
+},
+{
+    "$TypeId": 5,
+    "Id": "2f57d8e36fad4d4bb6e0e10d0a6d3e1b",
+    "Name": "Entity",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0
 },
 {
     "$TypeId": 5,

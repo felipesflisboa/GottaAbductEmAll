@@ -2,7 +2,7 @@
 namespace game {
 	const BORDER_TO_MOVE_ZONE : number = 56;
 
-	@ut.executeAfter(ut.Shared.UserCodeStart)
+	@ut.executeAfter(game.GameManagerSystem)
 	export class ZoneSystem extends ut.ComponentSystem {
 		
 		//TODO move with priority

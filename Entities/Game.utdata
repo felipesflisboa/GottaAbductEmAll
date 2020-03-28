@@ -7,6 +7,7 @@
     "Entities": [
         { "$TypeId": 9, "Id": "08e235db859b45b2a12fe841106e0662", "Name": "WorldCamera" },
         { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" },
+        { "$TypeId": 9, "Id": "011fe8050c36484caf5bfa173f84b2c6", "Name": "Image" },
         { "$TypeId": 9, "Id": "1cb905a13e2f452da3480b4c49d8de00", "Name": "CanvasCamera" },
         { "$TypeId": 9, "Id": "24c95e2b57664421a478d29a62802f66", "Name": "Scenery" },
         { "$TypeId": 9, "Id": "d1fa2185383a4a46b86158ac08813e2e", "Name": "Mockup" },
@@ -81,7 +82,6 @@
         { "$TypeId": 9, "Id": "57396077cc504a72a46bfe360cbda7c4", "Name": "imgTurle" },
         { "$TypeId": 9, "Id": "d527d26805004bc6bb1f4652cab18f6e", "Name": "lblGameOver" },
         { "$TypeId": 9, "Id": "a6f2cf1d18944286af14ea60a240ddbc", "Name": "imgFade" },
-        { "$TypeId": 9, "Id": "2f57d8e36fad4d4bb6e0e10d0a6d3e1b", "Name": "Entity" },
         { "$TypeId": 9, "Id": "a53e98a1f37744da801f768ac02753da", "Name": "AudioManager" },
         { "$TypeId": 9, "Id": "27e977e1529e425fb1dcfc8efc68978a", "Name": "Point" },
         { "$TypeId": 9, "Id": "e1e92c9ff6a746f6884a176669e2d007", "Name": "Live" },
@@ -89,20 +89,9 @@
         { "$TypeId": 9, "Id": "69cb5ffdfcb64439ae7ec4218148ea32", "Name": "GameOver" }
     ],
     "PrefabInstances": [
-        { "$TypeId": 13, "Id": "260e122df4ea4135b0b8e722e55d26a6", "Name": "WorldCamera" },
         { "$TypeId": 13, "Id": "d85c88ee7c6a405f9b85fc73769e697a", "Name": "Heart" },
         { "$TypeId": 13, "Id": "8a7316738a24445f9199abb9e39ccca7", "Name": "Heart" },
         { "$TypeId": 13, "Id": "3f4afbc9926442a4a05370b227eeb81d", "Name": "Heart" }
-    ]
-},
-{
-    "$TypeId": 12,
-    "Id": "260e122df4ea4135b0b8e722e55d26a6",
-    "Name": "WorldCamera",
-    "Source": { "Id": "8db7a6b05a2c453093eef7da6f67c94f", "Name": "WorldCamera" },
-    "Entities": [
-        { "$TypeId": 9, "Id": "08e235db859b45b2a12fe841106e0662", "Name": "WorldCamera" },
-        { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
     ]
 },
 {
@@ -142,22 +131,42 @@
     "Enabled": true,
     "Static": false,
     "Layer": 0,
-    "Components": [],
-    "Instance": {
-        "Source": { "$TypeId": 9, "Id": "3dd78916582949898d40def4c6af90b9", "Name": "WorldCamera" },
-        "EntityModificationFlags": 0,
-        "Modifications": [{
-            "Target": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
-            "Path": "position.y",
-            "TypeCode": 13,
-            "Value": -56
-        }, {
-            "Target": { "Id": "12692383f3fef3bb74c209888c5b0939", "Name": "Camera2D" },
-            "Path": "layerMask",
-            "TypeCode": 9,
-            "Value": 791
-        }]
-    }
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" }
+    }, {
+        "Type": { "Id": "12692383f3fef3bb74c209888c5b0939", "Name": "Camera2D" },
+        "Properties": {
+            "halfVerticalSize": 96,
+            "backgroundColor": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 0.2627451,
+                    "g": 0.3215686,
+                    "b": 0.2392157,
+                    "a": 1
+                }
+            },
+            "clearFlags": {
+                "$TypeId": 8,
+                "Type": { "Id": "76a06ddd38e99125d930e77c6a287872", "Name": "CameraClearFlags" },
+                "Id": "9faedc246f34513076701ef66b5ad74f",
+                "Name": "SolidColor",
+                "Value": 1
+            },
+            "depth": -1,
+            "layerMask": 791
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "y": -56
+                }
+            }
+        }
+    }]
 },
 {
     "$TypeId": 5,
@@ -166,11 +175,63 @@
     "Enabled": true,
     "Static": false,
     "Layer": 0,
-    "Components": [],
-    "Instance": {
-        "Source": { "$TypeId": 9, "Id": "d8af6d0041374637a96d0a3ffd9678de", "Name": "CellSkin" },
-        "EntityModificationFlags": 0
-    }
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "08e235db859b45b2a12fe841106e0662", "Name": "WorldCamera" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 1,
+                    "y": 24
+                }
+            }
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "011fe8050c36484caf5bfa173f84b2c6",
+    "Name": "Image",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" }
+    }, {
+        "Type": { "Id": "2266a95f5d16ca1ddde710d7c047ba69", "Name": "TransformLocalRotation" }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 0.1,
+                    "y": 0.1,
+                    "z": 0.1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "sprite": { "$TypeId": 10, "Guid": "3eac7d06e6f057546945e40971c2444f", "FileId": 21300000, "Type": 3 }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 10
+        }
+    }]
 },
 {
     "$TypeId": 5,
@@ -4300,14 +4361,6 @@
             "order": 5
         }
     }]
-},
-{
-    "$TypeId": 5,
-    "Id": "2f57d8e36fad4d4bb6e0e10d0a6d3e1b",
-    "Name": "Entity",
-    "Enabled": true,
-    "Static": false,
-    "Layer": 0
 },
 {
     "$TypeId": 5,

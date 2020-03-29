@@ -47,6 +47,14 @@
         "EditorOnly": false,
         "Versioned": true
     }, {
+        "Id": "e5b10855a1ed458ab1ca1b262c82f806",
+        "Name": "inputer",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": false,
+        "Visibility": 1,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
         "Id": "0edfdc4d25a540b09c948f23a87680bf",
         "Name": "usedLevelInfoArray",
         "FieldType": { "Id": "62d075dc19b541c4a849eaea5f90fc2e", "Name": "UsedLevelInfo" },

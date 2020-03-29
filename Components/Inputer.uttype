@@ -1,0 +1,34 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "50edfafe639a4495bb71119608122f3e",
+    "Name": "Inputer",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "d1f583bb4b084964938eda14658cbbd7",
+        "Name": "inputButtonArray",
+        "FieldType": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+        "Array": true,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "9e26deb3cf5c4ff0ad4f3365f9bab7bf",
+        "Name": "activeInputArray",
+        "FieldType": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" },
+        "Array": true,
+        "Visibility": 1,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "50edfafe639a4495bb71119608122f3e", "Name": "Inputer" },
+        "Properties": {
+            "activeInputArray": {
+                "Type": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" }
+            }
+        }
+    }
+}]

@@ -1,0 +1,21 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "178c8539373b40d3ab2d85936ca9a3ed",
+    "Name": "InputButton",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Component",
+    "Fields": [{
+        "Id": "b4935745304d4d3481064ab985e3b165",
+        "Name": "command",
+        "FieldType": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" }
+    }
+}]

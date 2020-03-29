@@ -40,7 +40,7 @@ namespace game {
 		}
 
 		OnGameOcurringUpdate(context : GameContext) : GameContext{
-			if(this.GetPauseKeyDown())
+			if(this.GetPauseKeyTriggered(context))
 				context.paused = !context.paused;
 			if(!context.paused){
 				if(context.nextBulletTime <= context.time)
@@ -53,6 +53,7 @@ namespace game {
 
 		Initialize(context : GameContext) : GameContext {
 			context.scenery = this.SetupScenery();
+			context.inputer = this.SetupInputer();
 			context.audioManager = this.SetupAudioManager();
 			context.player = this.SetupPlayer();
 			context.state = GameState.Ocurring;
@@ -87,6 +88,16 @@ namespace game {
 			let ret = null;
 			this.world.forEach( [ut.Entity, AudioManager],(entity, audioManager)=>{
 				audioManager.lastPlayedAudio = new ut.Entity(0,0);
+				ret = new ut.Entity(entity.index, entity.version);
+			});
+			return ret;
+		}
+
+		SetupInputer() : ut.Entity {
+			let ret = null;
+			this.world.forEach( [ut.Entity, Inputer],(entity, inputer)=>{
+				for(let i = 0;i<InputCommand.Action + 5;i++)
+					inputer.activeInputArray.push(false);
 				ret = new ut.Entity(entity.index, entity.version);
 			});
 			return ret;
@@ -213,20 +224,8 @@ namespace game {
 			return context;
 		}
 
-		static GetSceneryXRange(world: ut.World, scenery:Scenery): ut.Math.Range{
-			return new ut.Math.Range(
-				world.getComponentData(scenery.leftCornerZone,ut.Core2D.TransformLocalPosition).position.x - GameConstants.ZONE_WIDTH/2,
-				world.getComponentData(scenery.rightCornerZone,ut.Core2D.TransformLocalPosition).position.x + GameConstants.ZONE_WIDTH/2,
-			);
-		}
-
-		GetPauseKeyDown() : boolean {
-			return reusable.GeneralUtil.GetKeyDown([
-				ut.Core2D.KeyCode.P, 
-				ut.Core2D.KeyCode.KeypadEnter, 
-				ut.Core2D.KeyCode.Return,
-				ut.Core2D.KeyCode.Escape
-			]);
+		GetPauseKeyTriggered(context: GameContext) : boolean {
+			return this.world.getComponentData(context.inputer, Inputer).activeInputArray[InputCommand.Pause];
 		}
 
 		LoadGame() : void{
@@ -244,6 +243,27 @@ namespace game {
 			for(const animalEntityName of context.animalGroupNameArray)
 				ut.EntityGroup.destroyAll(this.world, animalEntityName);
 			ut.EntityGroup.instantiate(this.world, 'game.Title');
+		}
+
+		//TODO move
+		static GetSceneryXRange(world: ut.World, scenery:Scenery): ut.Math.Range{
+			return new ut.Math.Range(
+				world.getComponentData(scenery.leftCornerZone,ut.Core2D.TransformLocalPosition).position.x - GameConstants.ZONE_WIDTH/2,
+				world.getComponentData(scenery.rightCornerZone,ut.Core2D.TransformLocalPosition).position.x + GameConstants.ZONE_WIDTH/2,
+			);
+		}
+
+		//TODO move
+		static GetMainCamEntity(world:ut.World) : ut.Entity{
+			//TODO put on fixed entity
+			let ret = null;
+			world.forEach( [ut.Entity, ut.Core2D.Camera2D],(entity, camera)=>{
+				if(camera.depth < 0){
+					ret = new ut.Entity(entity.index, entity.version);
+					return;
+				}
+			});
+			return ret;
 		}
 
 		//TODO move
@@ -266,7 +286,7 @@ namespace game {
 
 		//TODO move
 		static HasAnyInputDown() : boolean {
-			return ut.Runtime.Input.getMouseButton(0) || reusable.GeneralUtil.GetKeyDown([
+			return ut.Runtime.Input.getMouseButton(0) || ut.Runtime.Input.touchCount() > 0 || reusable.GeneralUtil.GetKeyDown([
 				ut.Core2D.KeyCode.A, 
 				ut.Core2D.KeyCode.D, 
 				ut.Core2D.KeyCode.S, 

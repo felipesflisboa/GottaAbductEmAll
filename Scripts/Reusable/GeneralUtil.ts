@@ -72,6 +72,20 @@ namespace reusable {
 			}
 		}
 
+		/**
+		 * Cheap method for getting global position.
+		 * Doesn't work if any parent was a change on rotation or scale.
+		**/
+		static ToGlobalPos(world: ut.World, entity: ut.Entity):Vector3 {
+			let worldPos = new Vector3();
+			let parent = entity;
+			while(!parent.isNone()) {
+					worldPos = world.getComponentData(parent, ut.Core2D.TransformLocalPosition).position.add(worldPos);
+					parent = world.getComponentData(parent, ut.Core2D.TransformNode).parent;
+			}
+			return worldPos;
+		}
+
 		static Sign(val:number) : number{
 			if(val>0)
 				return 1;

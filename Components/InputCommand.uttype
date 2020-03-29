@@ -1,0 +1,78 @@
+﻿[{
+    "$TypeId": 3,
+    "Id": "4952539aee5144c59de21fe021d9d0f9",
+    "Name": "InputCommand",
+    "ExportFlags": 0,
+    "Unlisted": false,
+    "Visibility": 0,
+    "TypeCode": "Enum",
+    "BaseType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+    "Fields": [{
+        "Id": "faa0733540c24438b30b7d6593b49a03",
+        "Name": "None",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "6d0e258cef6543959e0119e5b607a150",
+        "Name": "Down",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "675830132d6b4c818193bcadf5dba5f1",
+        "Name": "Left",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "2691dd6e70884c0e80e4b81cc6bfa185",
+        "Name": "Right",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "9ac5bdf4575f40e7b664eda6b8762390",
+        "Name": "Up",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "de5d49fa4bfb49a1809c4ca0dc820ce1",
+        "Name": "Action",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }, {
+        "Id": "3ee8d1e046bc4f70969002c6ce3017f1",
+        "Name": "Pause",
+        "FieldType": { "Id": "9633c95a0a68473682f09ed6a01194b4", "Name": "Int32" },
+        "Array": false,
+        "Visibility": 0,
+        "EditorOnly": false,
+        "Versioned": true
+    }],
+    "DefaultValue": {
+        "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+        "Properties": {
+            "Down": 1,
+            "Left": 2,
+            "Right": 3,
+            "Up": 4,
+            "Action": 5,
+            "Pause": 6
+        }
+    }
+}]

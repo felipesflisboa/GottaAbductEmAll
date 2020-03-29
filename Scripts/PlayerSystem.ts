@@ -25,8 +25,12 @@ namespace game {
 						break;
 					}
 				}
-				if(PlayerSystem.IsTractorBeamActive(this.world, player) != (this.IsTractorBeamInputActive() && player.state != PlayerState.Dead))
-					reusable.GeneralUtil.ToggleActiveRecursively(this.world, player.tractorBeam);   
+				if(
+					PlayerSystem.IsTractorBeamActive(this.world, player) != 
+					(this.IsTractorBeamInputActive(context) && player.state != PlayerState.Dead)
+				){
+					reusable.GeneralUtil.ToggleActiveRecursively(this.world, player.tractorBeam);
+				}
 				player = this.UpdateTractorBeamAnimals(entity, player);  
 
 				if(player.state == PlayerState.Dead){
@@ -46,9 +50,9 @@ namespace game {
 				let playerCurrentSpeed = SPEED;
 				if(PlayerSystem.IsTractorBeamActive(this.world, player))
 					playerCurrentSpeed/=2;
-				tLocalPos.position = reusable.VectorUtil.V2To3(reusable.VectorUtil.V3To2(tLocalPos.position).add(
-					this.GetMovementInput().multiplyScalar(this.scheduler.deltaTime()*playerCurrentSpeed)
-				));
+				tLocalPos.position = reusable.VectorUtil.V2To3(reusable.VectorUtil.V3To2(tLocalPos.position).add(this.GetMovementInput(
+					this.world.getComponentData(context.inputer, Inputer)
+				).multiplyScalar(this.scheduler.deltaTime()*playerCurrentSpeed)));
 				//TODO break on method
 				tLocalPos.position = new Vector3(tLocalPos.position.x, Math.min(
 					GameConstants.Y_MOVEMENT_RANGE.end,
@@ -203,41 +207,21 @@ namespace game {
 		}
 
 		//TODO maybe break
-		GetMovementInput() : Vector2 {
+		GetMovementInput(inputer:Inputer) : Vector2 {
 			let ret = new Vector2();
-			if(reusable.GeneralUtil.GetKey([
-				ut.Core2D.KeyCode.A, ut.Core2D.KeyCode.LeftArrow, ut.Core2D.KeyCode.Keypad4
-			])){
+			if(inputer.activeInputArray[InputCommand.Left])
 				ret.x += -1;
-			}
-			if(reusable.GeneralUtil.GetKey([
-				ut.Core2D.KeyCode.D, ut.Core2D.KeyCode.RightArrow, ut.Core2D.KeyCode.Keypad6
-			])){
+			if(inputer.activeInputArray[InputCommand.Right])
 				ret.x += 1;
-			}
-			if(reusable.GeneralUtil.GetKey([
-				ut.Core2D.KeyCode.S, ut.Core2D.KeyCode.DownArrow, ut.Core2D.KeyCode.Keypad2, ut.Core2D.KeyCode.Keypad5
-			])){
+			if(inputer.activeInputArray[InputCommand.Down])
 				ret.y += -1;
-			}
-			if(reusable.GeneralUtil.GetKey([
-				ut.Core2D.KeyCode.W, ut.Core2D.KeyCode.UpArrow, ut.Core2D.KeyCode.Keypad8
-			])){
+			if(inputer.activeInputArray[InputCommand.Up])
 				ret.y += 1;
-			}
 			return ret;
 		}
 
-		IsTractorBeamInputActive() : boolean {
-			return ut.Runtime.Input.getMouseButton(0) || reusable.GeneralUtil.GetKey([
-				ut.Core2D.KeyCode.Space, 
-				ut.Core2D.KeyCode.LeftControl, 
-				ut.Core2D.KeyCode.RightControl,
-				ut.Core2D.KeyCode.Keypad1,
-				ut.Core2D.KeyCode.Keypad3,
-				ut.Core2D.KeyCode.Keypad7,
-				ut.Core2D.KeyCode.Keypad9
-			]);
+		IsTractorBeamInputActive(context:GameContext) : boolean {
+			return this.world.getComponentData(context.inputer, Inputer).activeInputArray[InputCommand.Action];
 		}
 
 		static IsTractorBeamActive(world:ut.World, player?:Player) : boolean {

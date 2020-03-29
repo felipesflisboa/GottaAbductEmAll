@@ -8,6 +8,22 @@
         { "$TypeId": 9, "Id": "08e235db859b45b2a12fe841106e0662", "Name": "WorldCamera" },
         { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" },
         { "$TypeId": 9, "Id": "011fe8050c36484caf5bfa173f84b2c6", "Name": "Image" },
+        { "$TypeId": 9, "Id": "76d8b712fcb045df96c364ee5f9264bf", "Name": "Button1" },
+        { "$TypeId": 9, "Id": "135ed27b7374471a849b1d9d90c2df10", "Name": "Button2" },
+        { "$TypeId": 9, "Id": "e8d27db85ff748ea956a0e177874a07a", "Name": "Button3" },
+        { "$TypeId": 9, "Id": "bd7f036f20fa42b8bbeb225469721fa6", "Name": "Button4" },
+        { "$TypeId": 9, "Id": "8f244d93472b45a88928a1bfd7bf0ff0", "Name": "Button5" },
+        { "$TypeId": 9, "Id": "1ec82a0edee049329f5fc37e2b0afadf", "Name": "Button6" },
+        { "$TypeId": 9, "Id": "5d98f2199f024e2db289bd3c728b171c", "Name": "Button7" },
+        { "$TypeId": 9, "Id": "86151f43db6d47b3a3166a3c3391fca6", "Name": "Button8" },
+        { "$TypeId": 9, "Id": "9ec70c4908b145589e6df7825f5443ea", "Name": "Button9" },
+        { "$TypeId": 9, "Id": "0aca11a091174378a2374df0fe4ffe5d", "Name": "Button*" },
+        { "$TypeId": 9, "Id": "ea2e33cea00d4adcb128f67e344adeac", "Name": "Button0" },
+        { "$TypeId": 9, "Id": "6aec3cdb3fa242cc9dc42b8c104a2c13", "Name": "Button#" },
+        { "$TypeId": 9, "Id": "a61db3101ea0448da95bc2129dc7046a", "Name": "ButtonC" },
+        { "$TypeId": 9, "Id": "d150c408297f45cab6216b3fd00a6732", "Name": "ButtonAction" },
+        { "$TypeId": 9, "Id": "6bd09a2b132f45bfa13333a28b8d6267", "Name": "ButtonDown" },
+        { "$TypeId": 9, "Id": "f06d986dc4b34a82a1acd93209bf6d58", "Name": "ButtonUp" },
         { "$TypeId": 9, "Id": "1cb905a13e2f452da3480b4c49d8de00", "Name": "CanvasCamera" },
         { "$TypeId": 9, "Id": "24c95e2b57664421a478d29a62802f66", "Name": "Scenery" },
         { "$TypeId": 9, "Id": "d1fa2185383a4a46b86158ac08813e2e", "Name": "Mockup" },
@@ -191,6 +207,34 @@
                 }
             }
         }
+    }, {
+        "Type": { "Id": "50edfafe639a4495bb71119608122f3e", "Name": "Inputer" },
+        "Properties": {
+            "inputButtonArray": {
+                "Type": { "Id": "5a182d9d039d4dfd8fa96132d05f9ee7", "Name": "EntityReference" },
+                "Items": [
+                    { "$TypeId": 9, "Id": "ea2e33cea00d4adcb128f67e344adeac", "Name": "Button0" },
+                    { "$TypeId": 9, "Id": "76d8b712fcb045df96c364ee5f9264bf", "Name": "Button1" },
+                    { "$TypeId": 9, "Id": "135ed27b7374471a849b1d9d90c2df10", "Name": "Button2" },
+                    { "$TypeId": 9, "Id": "e8d27db85ff748ea956a0e177874a07a", "Name": "Button3" },
+                    { "$TypeId": 9, "Id": "bd7f036f20fa42b8bbeb225469721fa6", "Name": "Button4" },
+                    { "$TypeId": 9, "Id": "8f244d93472b45a88928a1bfd7bf0ff0", "Name": "Button5" },
+                    { "$TypeId": 9, "Id": "1ec82a0edee049329f5fc37e2b0afadf", "Name": "Button6" },
+                    { "$TypeId": 9, "Id": "5d98f2199f024e2db289bd3c728b171c", "Name": "Button7" },
+                    { "$TypeId": 9, "Id": "86151f43db6d47b3a3166a3c3391fca6", "Name": "Button8" },
+                    { "$TypeId": 9, "Id": "9ec70c4908b145589e6df7825f5443ea", "Name": "Button9" },
+                    { "$TypeId": 9, "Id": "0aca11a091174378a2374df0fe4ffe5d", "Name": "Button*" },
+                    { "$TypeId": 9, "Id": "6aec3cdb3fa242cc9dc42b8c104a2c13", "Name": "Button#" },
+                    { "$TypeId": 9, "Id": "a61db3101ea0448da95bc2129dc7046a", "Name": "ButtonC" },
+                    { "$TypeId": 9, "Id": "d150c408297f45cab6216b3fd00a6732", "Name": "ButtonAction" },
+                    { "$TypeId": 9, "Id": "6bd09a2b132f45bfa13333a28b8d6267", "Name": "ButtonDown" },
+                    { "$TypeId": 9, "Id": "f06d986dc4b34a82a1acd93209bf6d58", "Name": "ButtonDown" }
+                ]
+            },
+            "activeInputArray": {
+                "Type": { "Id": "2b477f505af74487b7092b5617d88d3f", "Name": "Boolean" }
+            }
+        }
     }]
 },
 {
@@ -230,6 +274,1046 @@
         "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
         "Properties": {
             "order": 10
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "76d8b712fcb045df96c364ee5f9264bf",
+    "Name": "Button1",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -38,
+                    "y": -45
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 30,
+                    "y": 16
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "de5d49fa4bfb49a1809c4ca0dc820ce1",
+                "Name": "Action",
+                "Value": 5
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "135ed27b7374471a849b1d9d90c2df10",
+    "Name": "Button2",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -0.5,
+                    "y": -49
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 30,
+                    "y": 16
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "9ac5bdf4575f40e7b664eda6b8762390",
+                "Name": "Up",
+                "Value": 4
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "e8d27db85ff748ea956a0e177874a07a",
+    "Name": "Button3",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 36,
+                    "y": -45
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 30,
+                    "y": 16
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "de5d49fa4bfb49a1809c4ca0dc820ce1",
+                "Name": "Action",
+                "Value": 5
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "bd7f036f20fa42b8bbeb225469721fa6",
+    "Name": "Button4",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -37,
+                    "y": -63
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 30,
+                    "y": 16
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "675830132d6b4c818193bcadf5dba5f1",
+                "Name": "Left",
+                "Value": 2
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "8f244d93472b45a88928a1bfd7bf0ff0",
+    "Name": "Button5",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -0.5,
+                    "y": -67
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 30,
+                    "y": 16
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "6d0e258cef6543959e0119e5b607a150",
+                "Name": "Down",
+                "Value": 1
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "1ec82a0edee049329f5fc37e2b0afadf",
+    "Name": "Button6",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 35,
+                    "y": -63
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 30,
+                    "y": 16
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "2691dd6e70884c0e80e4b81cc6bfa185",
+                "Name": "Right",
+                "Value": 3
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "5d98f2199f024e2db289bd3c728b171c",
+    "Name": "Button7",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -36,
+                    "y": -81
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 30,
+                    "y": 16
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "de5d49fa4bfb49a1809c4ca0dc820ce1",
+                "Name": "Action",
+                "Value": 5
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "86151f43db6d47b3a3166a3c3391fca6",
+    "Name": "Button8",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -0.5,
+                    "y": -85
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 30,
+                    "y": 16
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "6d0e258cef6543959e0119e5b607a150",
+                "Name": "Down",
+                "Value": 1
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "9ec70c4908b145589e6df7825f5443ea",
+    "Name": "Button9",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 34,
+                    "y": -81
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 30,
+                    "y": 16
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "de5d49fa4bfb49a1809c4ca0dc820ce1",
+                "Name": "Action",
+                "Value": 5
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "0aca11a091174378a2374df0fe4ffe5d",
+    "Name": "Button*",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -35,
+                    "y": -99
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 30,
+                    "y": 16
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "3ee8d1e046bc4f70969002c6ce3017f1",
+                "Name": "Pause",
+                "Value": 6
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "ea2e33cea00d4adcb128f67e344adeac",
+    "Name": "Button0",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -0.5,
+                    "y": -103
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 30,
+                    "y": 16
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "3ee8d1e046bc4f70969002c6ce3017f1",
+                "Name": "Pause",
+                "Value": 6
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "6aec3cdb3fa242cc9dc42b8c104a2c13",
+    "Name": "Button#",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 33,
+                    "y": -99
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 30,
+                    "y": 16
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "3ee8d1e046bc4f70969002c6ce3017f1",
+                "Name": "Pause",
+                "Value": 6
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "a61db3101ea0448da95bc2129dc7046a",
+    "Name": "ButtonC",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -34,
+                    "y": -23
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 26,
+                    "y": 16
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "3ee8d1e046bc4f70969002c6ce3017f1",
+                "Name": "Pause",
+                "Value": 6
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "d150c408297f45cab6216b3fd00a6732",
+    "Name": "ButtonAction",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -0.5,
+                    "y": -11
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 50,
+                    "y": 14
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "de5d49fa4bfb49a1809c4ca0dc820ce1",
+                "Name": "Action",
+                "Value": 5
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "6bd09a2b132f45bfa13333a28b8d6267",
+    "Name": "ButtonDown",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 16,
+                    "y": -28
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 22,
+                    "y": 18
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "6d0e258cef6543959e0119e5b607a150",
+                "Name": "Down",
+                "Value": 1
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "f06d986dc4b34a82a1acd93209bf6d58",
+    "Name": "ButtonUp",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 36,
+                    "y": -18
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 0
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 17,
+                    "y": 14
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "178c8539373b40d3ab2d85936ca9a3ed", "Name": "InputButton" },
+        "Properties": {
+            "command": {
+                "$TypeId": 8,
+                "Type": { "Id": "4952539aee5144c59de21fe021d9d0f9", "Name": "InputCommand" },
+                "Id": "9ac5bdf4575f40e7b664eda6b8762390",
+                "Name": "Up",
+                "Value": 4
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 11
         }
     }]
 },

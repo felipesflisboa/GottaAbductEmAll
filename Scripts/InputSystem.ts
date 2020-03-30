@@ -2,9 +2,6 @@ namespace game {
 	@ut.executeAfter(ut.Shared.InputFence)
 	export class InputSystem extends ut.ComponentSystem {
 		OnUpdate():void {
-			// const pointerPos = this.GetPointerWorldPos(GameManagerSystem.GetMainCamEntity(this.world)); //remove
-			// console.log("Pointer world pos!"); //remove
-			// console.log(pointerPos); //remove
 			this.world.forEach([ut.Entity, game.Inputer], (entity, inputer) => {
 				let activeInputArray = inputer.activeInputArray;
 				inputer.activeInputArray = this.ClearActiveInputArray(activeInputArray);
@@ -34,7 +31,7 @@ namespace game {
 			activeInputArray[InputCommand.Up] = reusable.GeneralUtil.GetKey(
 				[ut.Core2D.KeyCode.W, ut.Core2D.KeyCode.UpArrow, ut.Core2D.KeyCode.Keypad8]
 			);
-			activeInputArray[InputCommand.Action] = ut.Runtime.Input.getMouseButton(1) || reusable.GeneralUtil.GetKey([
+			activeInputArray[InputCommand.Action] = ut.Runtime.Input.getMouseButton(1) || reusable.GeneralUtil.GetKeyDown([
 				ut.Core2D.KeyCode.Space, 
 				ut.Core2D.KeyCode.LeftControl, 
 				ut.Core2D.KeyCode.RightControl,
@@ -56,7 +53,7 @@ namespace game {
 						if(reusable.RectUtil.IsOn(
 								this.GetButtonRect(reusable.GeneralUtil.ToGlobalPos(this.world, inputButtonEntity), tLocalScale.scale), pointerPos
 						)){
-							if([InputCommand.Pause].indexOf(inputButton.command) == -1 || this.IsClickDown())
+							if([InputCommand.Action, InputCommand.Pause].indexOf(inputButton.command) == -1 || this.IsClickDown())
 								activeInputArray[inputButton.command] = true;
 						}
 					});
@@ -66,7 +63,7 @@ namespace game {
 		}
 		
 		IsClick() : boolean {
-			return ut.Runtime.Input.getMouseButton(0) || ut.Runtime.Input.touchCount() == 1;
+			return ut.Runtime.Input.getMouseButton(0) || ut.Runtime.Input.touchCount() > 0;
 		}
 
 		IsClickDown() : boolean {

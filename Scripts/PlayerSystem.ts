@@ -25,12 +25,19 @@ namespace game {
 						break;
 					}
 				}
-				if(
-					PlayerSystem.IsTractorBeamActive(this.world, player) != 
-					(this.IsTractorBeamInputActive(context) && player.state != PlayerState.Dead)
-				){
-					reusable.GeneralUtil.ToggleActiveRecursively(this.world, player.tractorBeam);
+
+				if(context.time < 0.1){
+					if(PlayerSystem.IsTractorBeamActive(this.world, player))
+						reusable.GeneralUtil.ToggleActiveRecursively(this.world, player.tractorBeam);
+				}else{
+					if(
+						(player.state != PlayerState.Dead && this.IsTractorBeamInputActive(context)) ||
+						(player.state == PlayerState.Dead && PlayerSystem.IsTractorBeamActive(this.world, player))
+					){
+						reusable.GeneralUtil.ToggleActiveRecursively(this.world, player.tractorBeam);
+					}
 				}
+
 				player = this.UpdateTractorBeamAnimals(entity, player);  
 
 				if(player.state == PlayerState.Dead){

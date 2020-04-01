@@ -7,7 +7,9 @@ namespace game {
 				inputer.activeInputArray = this.ClearActiveInputArray(activeInputArray);
 				inputer.activeInputArray = this.SetKeyboardInput(activeInputArray);
 				inputer.activeInputArray = this.SetButtonInput(
-					activeInputArray, inputer.inputButtonArray, this.GetPointerWorldPos(GameManagerSystem.GetMainCamEntity(this.world))
+					activeInputArray, 
+					inputer.inputButtonArray, 
+					this.GetClickWorldPos(GameManagerSystem.GetMainCamEntity(this.world), this.GetClickArray())
 				);
 			});
 		}
@@ -46,17 +48,19 @@ namespace game {
 			return activeInputArray;
 		}
 		
-		SetButtonInput(activeInputArray: boolean[], inputButtonEntityArray:ut.Entity[], pointerPos:Vector2|Vector3) : boolean[]{
+		SetButtonInput(activeInputArray: boolean[], inputButtonEntityArray:ut.Entity[], clickWorldPosArray:Vector3[]) : boolean[]{
 			if(this.IsClick()){
-				for(let inputButtonEntity of inputButtonEntityArray){
-					this.world.usingComponentData(inputButtonEntity, [InputButton, ut.Core2D.TransformLocalScale], (inputButton, tLocalScale)=>{
-						if(reusable.RectUtil.IsOn(
-								this.GetButtonRect(reusable.GeneralUtil.ToGlobalPos(this.world, inputButtonEntity), tLocalScale.scale), pointerPos
-						)){
-							if([InputCommand.Action, InputCommand.Pause].indexOf(inputButton.command) == -1 || this.IsClickDown())
-								activeInputArray[inputButton.command] = true;
+				for(let i=0; i<inputButtonEntityArray.length;i++){
+					this.world.usingComponentData(
+						inputButtonEntityArray[i], 
+						[InputButton, ut.Core2D.TransformLocalScale], 
+						(inputButton, tLocalScale)=>{
+							if(this.AnyClickIsOnButtonRange(clickWorldPosArray, inputButtonEntityArray[i], tLocalScale.scale)){
+								if([InputCommand.Action, InputCommand.Pause].indexOf(inputButton.command) == -1 || this.IsClickDown(i))
+									activeInputArray[inputButton.command] = true;
+							}
 						}
-					});
+					);
 				}
 			}
 			return activeInputArray;
@@ -66,9 +70,9 @@ namespace game {
 			return ut.Runtime.Input.getMouseButton(0) || ut.Runtime.Input.touchCount() > 0;
 		}
 
-		IsClickDown() : boolean {
+		IsClickDown(touchIndex:number) : boolean {
 			return ut.Runtime.Input.getMouseButtonDown(0) || (
-				ut.Runtime.Input.touchCount() > 0 && ut.Runtime.Input.getTouch(0).phase == ut.Core2D.TouchState.Began
+				ut.Runtime.Input.touchCount() > 0 && ut.Runtime.Input.getTouch(touchIndex).phase == ut.Core2D.TouchState.Began
 			);
 		}
 		
@@ -76,22 +80,32 @@ namespace game {
 			return new ut.Math.Rect(pos.x - scale.x/2, pos.y - scale.y/2, scale.x, scale.y);
 		}
 
-		/* //remove
-		GetRect(tLocalPos:ut.Core2D.TransformLocalPosition, tLocalScale:ut.Core2D.TransformLocalScale) : ut.Math.Rect{
-			return new ut.Math.Rect(
-				tLocalPos.position.x - tLocalScale.scale.x/2,
-				tLocalPos.position.y - tLocalScale.scale.y/2, 
-				tLocalScale.scale.x, 
-				tLocalScale.scale.y
-			);
+		AnyClickIsOnButtonRange(clickWorldPosArray:Vector3[], buttonEntity:ut.Entity, buttonScale:Vector2|Vector3) : boolean{
+			return reusable.GeneralUtil.IndexOf(clickWorldPosArray, (pos) => reusable.RectUtil.IsOn(
+				this.GetButtonRect(reusable.GeneralUtil.ToGlobalPos(this.world, buttonEntity), buttonScale), pos
+			))!= -1
 		}
-		*/
 
-		GetPointerWorldPos(cameraEntity: ut.Entity) : Vector3 {
+		GetClickWorldPos(cameraEntity: ut.Entity, clickArray: Vector2[]) : Vector3[] {
+			let ret = []
 			let displayInfo = this.world.getConfigData(ut.Core2D.DisplayInfo);
-			return ut.Core2D.TransformService.windowToWorld(
-				this.world, cameraEntity, ut.Runtime.Input.getInputPosition(), new Vector2(displayInfo.width, displayInfo.height)
-			);
+			for (const click of clickArray) {
+				ret.push(ut.Core2D.TransformService.windowToWorld(
+					this.world, cameraEntity, click, new Vector2(displayInfo.width, displayInfo.height)
+				));
+			}
+			return ret;
+		}
+		
+		GetClickArray() : Vector2[] {
+			let ret = []
+			for (let i = 0; i < ut.Runtime.Input.touchCount(); i++) {
+				const touch = ut.Runtime.Input.getTouch(i);
+				ret.push(new Vector2(touch.x, touch.y));
+			}
+			if(ut.Runtime.Input.touchCount()==0 && ut.Runtime.Input.getMouseButton(0))
+				ret.push(ut.Runtime.Input.getInputPosition());
+			return ret;
 		}
 	}
 }

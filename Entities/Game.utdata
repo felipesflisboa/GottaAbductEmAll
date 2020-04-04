@@ -8,6 +8,7 @@
         { "$TypeId": 9, "Id": "08e235db859b45b2a12fe841106e0662", "Name": "WorldCamera" },
         { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" },
         { "$TypeId": 9, "Id": "011fe8050c36484caf5bfa173f84b2c6", "Name": "Image" },
+        { "$TypeId": 9, "Id": "6432c6211d4a4fe8bd5061d2cce0686a", "Name": "BorderDown" },
         { "$TypeId": 9, "Id": "76d8b712fcb045df96c364ee5f9264bf", "Name": "Button1" },
         { "$TypeId": 9, "Id": "135ed27b7374471a849b1d9d90c2df10", "Name": "Button2" },
         { "$TypeId": 9, "Id": "e8d27db85ff748ea956a0e177874a07a", "Name": "Button3" },
@@ -178,7 +179,7 @@
             "position": {
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
-                    "y": -56
+                    "y": -62
                 }
             }
         }
@@ -203,7 +204,7 @@
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
                     "x": 1,
-                    "y": 24
+                    "y": 30
                 }
             }
         }
@@ -274,6 +275,58 @@
         "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
         "Properties": {
             "order": 10
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "6432c6211d4a4fe8bd5061d2cce0686a",
+    "Name": "BorderDown",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "51f3a20ac3c74ec388f1c5a256ac7072", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 0,
+                    "y": -78
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "2266a95f5d16ca1ddde710d7c047ba69", "Name": "TransformLocalRotation" }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 140,
+                    "y": 100,
+                    "z": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1,
+                    "a": 1
+                }
+            }
         }
     }]
 },
@@ -1349,7 +1402,7 @@
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
                     "x": 0,
-                    "y": -56
+                    "y": -62
                 }
             }
         }

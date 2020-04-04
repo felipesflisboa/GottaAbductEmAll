@@ -50,17 +50,14 @@ namespace game {
 		
 		SetButtonInput(activeInputArray: boolean[], inputButtonEntityArray:ut.Entity[], clickWorldPosArray:Vector3[]) : boolean[]{
 			if(this.IsClick()){
-				for(let i=0; i<inputButtonEntityArray.length;i++){
-					this.world.usingComponentData(
-						inputButtonEntityArray[i], 
-						[InputButton, ut.Core2D.TransformLocalScale], 
-						(inputButton, tLocalScale)=>{
-							if(this.AnyClickIsOnButtonRange(clickWorldPosArray, inputButtonEntityArray[i], tLocalScale.scale)){
-								if([InputCommand.Action, InputCommand.Pause].indexOf(inputButton.command) == -1 || this.IsClickDown(i))
-									activeInputArray[inputButton.command] = true;
-							}
+				for(let inputButtonEntity of inputButtonEntityArray){
+					this.world.usingComponentData(inputButtonEntity, [InputButton, ut.Core2D.TransformLocalScale], (inputButton, tLocalScale)=>{
+						const clickIndex = this.GetClickIndexOnButtonRange(clickWorldPosArray, inputButtonEntity, tLocalScale.scale);
+						if(clickIndex != -1){
+							if([InputCommand.Action, InputCommand.Pause].indexOf(inputButton.command) == -1 || this.IsClickDown(clickIndex))
+								activeInputArray[inputButton.command] = true;
 						}
-					);
+					});
 				}
 			}
 			return activeInputArray;
@@ -80,10 +77,10 @@ namespace game {
 			return new ut.Math.Rect(pos.x - scale.x/2, pos.y - scale.y/2, scale.x, scale.y);
 		}
 
-		AnyClickIsOnButtonRange(clickWorldPosArray:Vector3[], buttonEntity:ut.Entity, buttonScale:Vector2|Vector3) : boolean{
+		GetClickIndexOnButtonRange(clickWorldPosArray:Vector3[], buttonEntity:ut.Entity, buttonScale:Vector2|Vector3) : number{
 			return reusable.GeneralUtil.IndexOf(clickWorldPosArray, (pos) => reusable.RectUtil.IsOn(
 				this.GetButtonRect(reusable.GeneralUtil.ToGlobalPos(this.world, buttonEntity), buttonScale), pos
-			))!= -1
+			))
 		}
 
 		GetClickWorldPos(cameraEntity: ut.Entity, clickArray: Vector2[]) : Vector3[] {

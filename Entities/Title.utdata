@@ -8,7 +8,9 @@
         { "$TypeId": 9, "Id": "53e2b2c9095f4c3f846e5025a27482d1", "Name": "WorldCamera" },
         { "$TypeId": 9, "Id": "dec9ceae0c40453c8a6a280d25465401", "Name": "CellSkin" },
         { "$TypeId": 9, "Id": "36f3679681e64783825738a44e0b0c19", "Name": "Image" },
-        { "$TypeId": 9, "Id": "85d12d8fd3b2437aa99589d0088832be", "Name": "BorderDown" },
+        { "$TypeId": 9, "Id": "42e1694562b141ecb9ee1d33bcb62eef", "Name": "BorderRight" },
+        { "$TypeId": 9, "Id": "d7aaa1f440b4464ba6f287b32cf1bc7e", "Name": "BorderLeft" },
+        { "$TypeId": 9, "Id": "8c16bbe57a594f1c9c4fbe8e492f4e33", "Name": "BorderDown" },
         { "$TypeId": 9, "Id": "becfe288375f40f9bb13953dad664564", "Name": "Canvas" },
         { "$TypeId": 9, "Id": "32e65e142d2b473eb675881484d815f4", "Name": "lblTitleTop" },
         { "$TypeId": 9, "Id": "6dbcfdacad964116947c8446a8f7cd56", "Name": "lblTitleBottom" },
@@ -127,7 +129,121 @@
 },
 {
     "$TypeId": 5,
-    "Id": "85d12d8fd3b2437aa99589d0088832be",
+    "Id": "42e1694562b141ecb9ee1d33bcb62eef",
+    "Name": "BorderRight",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "dec9ceae0c40453c8a6a280d25465401", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 250,
+                    "y": -116
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "2266a95f5d16ca1ddde710d7c047ba69", "Name": "TransformLocalRotation" }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 400,
+                    "y": 400,
+                    "z": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 0.7882353,
+                    "g": 0.7960784,
+                    "b": 0.7647059,
+                    "a": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 9
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "d7aaa1f440b4464ba6f287b32cf1bc7e",
+    "Name": "BorderLeft",
+    "Enabled": true,
+    "Static": false,
+    "Layer": 0,
+    "Components": [{
+        "Type": { "Id": "c895dbe72eb46ecb10d589d320151758", "Name": "TransformNode" },
+        "Properties": {
+            "parent": { "$TypeId": 9, "Id": "dec9ceae0c40453c8a6a280d25465401", "Name": "CellSkin" }
+        }
+    }, {
+        "Type": { "Id": "70449d66178e0d9f66795c24f0fbbdfc", "Name": "TransformLocalPosition" },
+        "Properties": {
+            "position": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": -250,
+                    "y": -116
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "2266a95f5d16ca1ddde710d7c047ba69", "Name": "TransformLocalRotation" }
+    }, {
+        "Type": { "Id": "f11fe490eefc969bbc3fde5eab5ccd1e", "Name": "TransformLocalScale" },
+        "Properties": {
+            "scale": {
+                "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
+                "Properties": {
+                    "x": 400,
+                    "y": 400,
+                    "z": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "1c504a8a7963db0d32e89b527b90e057", "Name": "Sprite2DRenderer" },
+        "Properties": {
+            "color": {
+                "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
+                "Properties": {
+                    "r": 0.7882353,
+                    "g": 0.7960784,
+                    "b": 0.7647059,
+                    "a": 1
+                }
+            }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 9
+        }
+    }]
+},
+{
+    "$TypeId": 5,
+    "Id": "8c16bbe57a594f1c9c4fbe8e492f4e33",
     "Name": "BorderDown",
     "Enabled": true,
     "Static": false,
@@ -144,7 +260,7 @@
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
                     "x": 0,
-                    "y": -78
+                    "y": -216
                 }
             }
         }
@@ -156,8 +272,8 @@
             "scale": {
                 "Type": { "Id": "f139194553e8ae4a3250c5527d6de169", "Name": "Vector3" },
                 "Properties": {
-                    "x": 140,
-                    "y": 100,
+                    "x": 100,
+                    "y": 200,
                     "z": 1
                 }
             }
@@ -168,12 +284,17 @@
             "color": {
                 "Type": { "Id": "2a90a1633d6dc16cd37cdfaca7b93cea", "Name": "Color" },
                 "Properties": {
-                    "r": 1,
-                    "g": 1,
-                    "b": 1,
+                    "r": 0.7882353,
+                    "g": 0.7960784,
+                    "b": 0.7647059,
                     "a": 1
                 }
             }
+        }
+    }, {
+        "Type": { "Id": "b1e5348389156b7a260d6ed393754fba", "Name": "LayerSorting" },
+        "Properties": {
+            "order": 9
         }
     }]
 },

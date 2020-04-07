@@ -1,7 +1,7 @@
 
 namespace game {
 	const BULLET_BASE_RESPAWN_TIME_RANGE : ut.Math.Range = new ut.Math.Range(0.6, 0.9);
-	const BULLET_LIMIT_BEFORE_SLOW_RESPAWN : number = 10;
+	const BULLET_LIMIT_BEFORE_SLOW_RESPAWN : number = 9;
 	const BULLET_RESPAWN_SLOW_MULTIPIER : number = 2;
 	const BULLET_EXTRA_Y : number = 6;
 	const ANIMAL_LIMIT : number = 7;

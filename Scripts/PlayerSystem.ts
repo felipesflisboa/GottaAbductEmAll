@@ -3,7 +3,7 @@ namespace game {
 	const SPEED : number = 35;
 	const RESPAWN_DURATION : number = 1.2;
 	const RESPAWN_INVINCIBILITY_DURATION : number = 2.4;
-	const EXTRA_LIVE_POINTS : number = 20; 
+	const EXTRA_LIVE_POINTS : number = 15; 
 
 	@ut.requiredComponents(Player)
 	@ut.executeAfter(ut.Shared.UserCodeStart)

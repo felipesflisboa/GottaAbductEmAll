@@ -11,13 +11,13 @@ namespace game {
 					context.gameOverShowTime < context.time && 
 					this.world.hasComponent(canvas.gameOverRect, ut.Disabled)
 				){
-					reusable.GeneralUtil.SetActiveRecursively(this.world, canvas.gameOverRect, true);
+					reusable.EntityUtil.SetActiveRecursively(this.world, canvas.gameOverRect, true);
 					AudioPlayer.Play(this.world, this.world.getComponentData(context.audioManager, AudioManager).gameOverAudio);
 				}
 				if(this.world.hasComponent(canvas.pauseRect, ut.Disabled) == context.paused)
-					reusable.GeneralUtil.SetActiveRecursively(this.world, canvas.pauseRect, context.paused);
+					reusable.EntityUtil.SetActiveRecursively(this.world, canvas.pauseRect, context.paused);
 					if(!this.world.hasComponent(canvas.fadeRect, ut.Disabled))
-						reusable.GeneralUtil.SetActiveRecursively(this.world, canvas.fadeRect, false);
+						reusable.EntityUtil.SetActiveRecursively(this.world, canvas.fadeRect, false);
 			});
 		}
 	}

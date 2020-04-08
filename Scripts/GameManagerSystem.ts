@@ -6,7 +6,6 @@ namespace game {
 	const BULLET_EXTRA_Y : number = 6;
 	const ANIMAL_LIMIT : number = 7;
 	const GAME_OVER_DELAY : number = 3;
-	const SCORE_KEY : string = "AbductTopScore";
 
 	@ut.executeBefore(ut.Shared.UserCodeStart)
 	export class GameManagerSystem extends ut.ComponentSystem {
@@ -16,7 +15,7 @@ namespace game {
 				context.time += this.scheduler.deltaTime();
 			switch (context.state){ 
 				case GameState.BeforeStart: {
-					if(GameManagerSystem.IsTitle(this.world))
+					if(AbductUtil.IsTitle(this.world))
 						this.OnTitleScreenUpdate(context);
 					else
 						context = this.Initialize(context);
@@ -35,7 +34,7 @@ namespace game {
 		}
 
 		OnTitleScreenUpdate(context : GameContext) : void {
-			if(0.5 < context.time && GameManagerSystem.HasAnyInputDown())
+			if(0.5 < context.time && AbductUtil.HasAnyInputDown())
 				this.LoadGame();
 		}
 
@@ -61,7 +60,7 @@ namespace game {
 			context.gameOverShowTime = 0;
 			context.usedLevelInfoArray=this.GenerateUsedLevelInfoArray(this.world.getComponentData(context.scenery, Scenery).levelInfoArray);
 			context.score = 0;
-			context.topScore = GameManagerSystem.LoadTopScore();
+			context.topScore = AbductUtil.LoadTopScore();
 			context.speed = context.usedLevelInfoArray[context.score].speed;
 			context.time = 0;
 			context.nextBulletTime = 0;
@@ -142,8 +141,6 @@ namespace game {
 				bullet.direction = this.GetBulletDirection(scenery, tLocalPos.position.y, xSign);
 			});
 			let multiplier = this.GetBulletCount() > BULLET_LIMIT_BEFORE_SLOW_RESPAWN ? BULLET_RESPAWN_SLOW_MULTIPIER : 1;
-			//if(multiplier > 1) //remove
-			// console.log("Next bullet time="+(multiplier*reusable.RandomUtil.Range(BULLET_BASE_RESPAWN_TIME_RANGE)/context.speed)); //remove
 			context.nextBulletTime = context.time + multiplier*reusable.RandomUtil.Range(BULLET_BASE_RESPAWN_TIME_RANGE)/context.speed;
 			return context;
 		}
@@ -198,7 +195,7 @@ namespace game {
 				[ut.Core2D.TransformLocalPosition, ut.Core2D.TransformLocalRotation], 
 				(tLocalPosition, tLocalRotation)=>{
 					const playerPos = this.world.getComponentData(context.player, ut.Core2D.TransformLocalPosition).position;
-					const sceneryXRange = GameManagerSystem.GetSceneryXRange(this.world, scenery);
+					const sceneryXRange = AbductUtil.GetSceneryXRange(this.world, scenery);
 					do{
 						var randomPosX = reusable.RandomUtil.Range(sceneryXRange);
 						//TODO maybe a Math.floor
@@ -216,7 +213,7 @@ namespace game {
 			if(context.gameOverShowTime == 0){
 				context.gameOverShowTime = GAME_OVER_DELAY + context.time;
 			}else if(context.gameOverShowTime < context.time){
-				if(context.gameOverShowTime + 0.5 < context.time && GameManagerSystem.HasAnyInputDown()){
+				if(context.gameOverShowTime + 0.5 < context.time && AbductUtil.HasAnyInputDown()){
 					this.LoadTitle();
 					context = this.world.getConfigData(GameContext);
 				}
@@ -243,78 +240,6 @@ namespace game {
 			for(const animalEntityName of context.animalGroupNameArray)
 				ut.EntityGroup.destroyAll(this.world, animalEntityName);
 			ut.EntityGroup.instantiate(this.world, 'game.Title');
-		}
-
-		//TODO move
-		static GetSceneryXRange(world: ut.World, scenery:Scenery): ut.Math.Range{
-			return new ut.Math.Range(
-				world.getComponentData(scenery.leftCornerZone,ut.Core2D.TransformLocalPosition).position.x - GameConstants.ZONE_WIDTH/2,
-				world.getComponentData(scenery.rightCornerZone,ut.Core2D.TransformLocalPosition).position.x + GameConstants.ZONE_WIDTH/2,
-			);
-		}
-
-		//TODO move
-		static GetMainCamEntity(world:ut.World) : ut.Entity{
-			//TODO put on fixed entity
-			let ret = null;
-			world.forEach( [ut.Entity, ut.Core2D.Camera2D],(entity, camera)=>{
-				if(camera.depth < 0){
-					ret = new ut.Entity(entity.index, entity.version);
-					return;
-				}
-			});
-			return ret;
-		}
-
-		//TODO move
-		static IsTitle(world:ut.World) : boolean {
-			let ret = true;
-			world.forEach( [Scenery],(scenery) => ret = false);
-			return ret;
-		}
-
-		//TODO move
-		static AddPoints(world:ut.World, points:number) : void {
-			let context = world.getConfigData(GameContext);
-			context.score+=points;
-			if(context.score >= context.usedLevelInfoArray.length)
-				context.speed = context.usedLevelInfoArray[context.usedLevelInfoArray.length - 1].speed;
-			else
-				context.speed = context.usedLevelInfoArray[context.score].speed;
-		  world.setConfigData(context);
-		}
-
-		//TODO move
-		static HasAnyInputDown() : boolean {
-			return ut.Runtime.Input.getMouseButton(0) || ut.Runtime.Input.touchCount() > 0 || reusable.GeneralUtil.GetKeyDown([
-				ut.Core2D.KeyCode.A, 
-				ut.Core2D.KeyCode.D, 
-				ut.Core2D.KeyCode.S, 
-				ut.Core2D.KeyCode.W, 
-				ut.Core2D.KeyCode.Keypad0,
-				ut.Core2D.KeyCode.Keypad1, 
-				ut.Core2D.KeyCode.Keypad2, 
-				ut.Core2D.KeyCode.Keypad3, 
-				ut.Core2D.KeyCode.Keypad4, 
-				ut.Core2D.KeyCode.Keypad5, 
-				ut.Core2D.KeyCode.Keypad6, 
-				ut.Core2D.KeyCode.Keypad7, 
-				ut.Core2D.KeyCode.Keypad8, 
-				ut.Core2D.KeyCode.Keypad9, 
-				ut.Core2D.KeyCode.Space
-			]);
-		}
-
-		static LoadTopScore() : number{
-			return +reusable.PersistenceUtil.GetCookie(SCORE_KEY);
-		}
-
-		static SaveTopScore(value:number) : void{
-			reusable.PersistenceUtil.SetCookie(SCORE_KEY, value.toString());
-		}
-
-		static GetTimeFormatted(context : GameContext): string{
-			return Math.floor(context.time/60)+":"+reusable.GeneralUtil.ExactDigits( Math.floor(context.time) % 60 ,2)
 		}
 	}
 }

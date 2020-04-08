@@ -3,7 +3,6 @@ namespace game {
 	const BULLET_BASE_SPEED : number = 10;
 	const BULLET_MAX_X_DISTANCE_TO_PLAYER : number = 56;
 
-	@ut.requiredComponents(Bullet)
 	@ut.executeAfter(ut.Shared.UserCodeStart)
 	export class BulletSystem extends ut.ComponentSystem {
 		OnUpdate():void {

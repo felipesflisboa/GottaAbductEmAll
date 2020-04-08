@@ -14,7 +14,7 @@ namespace game {
 			let scenery = this.world.getComponentData(context.scenery, Scenery);
 			this.world.forEach([ut.Entity, Zone, ut.Core2D.TransformLocalPosition],(entity, zone, tLocalPos)=>{
 				if(ZoneSystem.OnZone(tLocalPos.position.x, playerPos.x)){
-					if(!reusable.GeneralUtil.EntityEquals(scenery.currentZone, entity)){
+					if(!reusable.EntityUtil.Equals(scenery.currentZone, entity)){
 						scenery.currentZone = new ut.Entity(entity.index, entity.version);
 						scenery = this.RefreshCornerZone(scenery, playerPos.x);
 					}
@@ -24,13 +24,13 @@ namespace game {
 				scenery.currentZone, ut.Core2D.TransformLocalPosition
 			).position;
 			if(
-				reusable.GeneralUtil.EntityEquals(scenery.leftCornerZone, scenery.currentZone) && 
+				reusable.EntityUtil.Equals(scenery.leftCornerZone, scenery.currentZone) && 
 				currentZonePos.x - GameConstants.ZONE_WIDTH/2 + BORDER_TO_MOVE_ZONE>playerPos.x
 			){
 				this.Move(scenery.rightCornerZone, currentZonePos.x);
 				scenery = this.RefreshCornerZone(scenery, playerPos.x);
 			}else if(
-				reusable.GeneralUtil.EntityEquals(scenery.rightCornerZone, scenery.currentZone) && 
+				reusable.EntityUtil.Equals(scenery.rightCornerZone, scenery.currentZone) && 
 				currentZonePos.x + GameConstants.ZONE_WIDTH/2 - BORDER_TO_MOVE_ZONE<playerPos.x
 			){
 				this.Move(scenery.leftCornerZone, currentZonePos.x);
@@ -47,7 +47,7 @@ namespace game {
 			scenery.rightCornerZone = new ut.Entity(0,0);
 			let mostRightPos = new Vector3(0,0,0);
 			this.world.forEach([ut.Entity, Zone, ut.Core2D.TransformLocalPosition],(entity, zone, tLocalPos)=>{
-				if(!reusable.GeneralUtil.EntityEquals(scenery.currentZone, entity)){
+				if(!reusable.EntityUtil.Equals(scenery.currentZone, entity)){
 					if(tLocalPos.position.x > playerX && (scenery.rightCornerZone.isNone() || tLocalPos.position.x > mostRightPos.x)){
 						scenery.rightCornerZone = new ut.Entity(entity.index, entity.version);
 						mostRightPos = tLocalPos.position;

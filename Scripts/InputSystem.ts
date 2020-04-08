@@ -9,7 +9,7 @@ namespace game {
 				inputer.activeInputArray = this.SetButtonInput(
 					activeInputArray, 
 					inputer.inputButtonArray, 
-					this.GetClickWorldPos(GameManagerSystem.GetMainCamEntity(this.world), this.GetClickArray())
+					this.GetClickWorldPos(AbductUtil.GetMainCamEntity(this.world), this.GetClickArray())
 				);
 			});
 		}
@@ -43,7 +43,7 @@ namespace game {
 				ut.Core2D.KeyCode.Keypad9
 			]);
 			activeInputArray[InputCommand.Pause] = reusable.GeneralUtil.GetKeyDown(
-				[ut.Core2D.KeyCode.P, ut.Core2D.KeyCode.KeypadEnter, ut.Core2D.KeyCode.Return, ut.Core2D.KeyCode.Escape]
+				[ut.Core2D.KeyCode.C, ut.Core2D.KeyCode.P, ut.Core2D.KeyCode.KeypadEnter, ut.Core2D.KeyCode.Return, ut.Core2D.KeyCode.Escape]
 			);
 			return activeInputArray;
 		}

@@ -3,7 +3,6 @@
 namespace game {
 	const MAX_DISTANCE_TO_RUN_FROM_TRACTOR_BEAM : number = 9;
 
-	@ut.requiredComponents(Animal)
 	@ut.executeAfter(ut.Shared.UserCodeStart)
 	@ut.executeAfter(game.PlayerSystem)
 	export class AnimalSystem extends ut.ComponentSystem {
@@ -14,7 +13,7 @@ namespace game {
 			if(context.state == GameState.BeforeStart || context.paused)
 				return;
 			const scenery = this.world.getComponentData(context.scenery, Scenery);
-			const sceneryXRange = GameManagerSystem.GetSceneryXRange(this.world, scenery)
+			const sceneryXRange = AbductUtil.GetSceneryXRange(this.world, scenery)
 			this.world.forEach(
 				[ut.Entity, Animal, ut.Core2D.TransformLocalPosition, ut.Core2D.TransformLocalRotation], 
 				(entity, animal, tLocalPos, tLocalRot) => {
@@ -70,7 +69,7 @@ namespace game {
 		}
 
 		Despawn(entity:ut.Entity) : void{
-			reusable.GeneralUtil.SetActiveRecursively(this.world, entity, false);
+			reusable.EntityUtil.SetActiveRecursively(this.world, entity, false);
 			let context = this.world.getConfigData(GameContext);
 			context.animalCount--;
 			this.world.setConfigData(context);
@@ -79,7 +78,7 @@ namespace game {
 		ShouldRunFromTractorBeam(pos:Vector3, rot:Quaternion) : Boolean{
 			const context = this.world.getConfigData(GameContext); 
 			const player = this.world.getComponentData(context.player, Player);
-			if(!PlayerSystem.IsTractorBeamActive(this.world, player))
+			if(!AbductUtil.IsTractorBeamActive(this.world, player))
 				return false;
 			const playerPosX = this.world.getComponentData(context.player, ut.Core2D.TransformLocalPosition).position.x;
 			if(Math.abs(playerPosX - pos.x) > MAX_DISTANCE_TO_RUN_FROM_TRACTOR_BEAM)

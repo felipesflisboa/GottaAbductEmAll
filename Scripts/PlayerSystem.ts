@@ -5,7 +5,6 @@ namespace game {
 	const RESPAWN_INVINCIBILITY_DURATION : number = 2.4;
 	const EXTRA_LIVE_POINTS : number = 15; 
 
-	@ut.requiredComponents(Player)
 	@ut.executeAfter(ut.Shared.UserCodeStart)
 	export class PlayerSystem extends ut.ComponentSystem {
 		OnUpdate():void {
@@ -27,14 +26,14 @@ namespace game {
 				}
 
 				if(context.time < 0.1){
-					if(PlayerSystem.IsTractorBeamActive(this.world, player))
-						reusable.GeneralUtil.ToggleActiveRecursively(this.world, player.tractorBeam);
+					if(AbductUtil.IsTractorBeamActive(this.world, player))
+						reusable.EntityUtil.ToggleActiveRecursively(this.world, player.tractorBeam);
 				}else{
 					if(
-						(player.state != PlayerState.Dead && this.IsTractorBeamInputActive(context)) ||
-						(player.state == PlayerState.Dead && PlayerSystem.IsTractorBeamActive(this.world, player))
+						(player.state != PlayerState.Dead && this.IsTractorBeamInputActive()) ||
+						(player.state == PlayerState.Dead && AbductUtil.IsTractorBeamActive(this.world, player))
 					){
-						reusable.GeneralUtil.ToggleActiveRecursively(this.world, player.tractorBeam);
+						reusable.EntityUtil.ToggleActiveRecursively(this.world, player.tractorBeam);
 					}
 				}
 
@@ -55,23 +54,30 @@ namespace game {
 				}
 
 				let playerCurrentSpeed = SPEED;
-				if(PlayerSystem.IsTractorBeamActive(this.world, player))
+				if(AbductUtil.IsTractorBeamActive(this.world, player))
 					playerCurrentSpeed/=2;
 				tLocalPos.position = reusable.VectorUtil.V2To3(reusable.VectorUtil.V3To2(tLocalPos.position).add(this.GetMovementInput(
 					this.world.getComponentData(context.inputer, Inputer)
 				).multiplyScalar(this.scheduler.deltaTime()*playerCurrentSpeed)));
-				//TODO break on method
-				tLocalPos.position = new Vector3(tLocalPos.position.x, Math.min(
-					GameConstants.Y_MOVEMENT_RANGE.end,
-					Math.max(GameConstants.Y_MOVEMENT_RANGE.start, tLocalPos.position.y)
-				),tLocalPos.position.z);
+				
+				tLocalPos.position = this.GetClampedPlayerPos(tLocalPos.position);
+				this.FollowPlayer(entity, player.camera);
+			});
+		}
 
-				//TODO maybe method
-				this.world.usingComponentData(player.camera, [ut.Core2D.TransformLocalPosition], (cameraTLocalPos)=>{
-					cameraTLocalPos.position.x = ut.Core2D.TransformService.localPositionFromWorldPosition(
-						this.world, player.camera,ut.Core2D.TransformService.computeWorldPosition (this.world, entity)
-					).x;
-				});
+		GetClampedPlayerPos(pos:Vector3) : Vector3{
+			return new Vector3(
+				pos.x,
+				Math.min(GameConstants.Y_MOVEMENT_RANGE.end,Math.max(GameConstants.Y_MOVEMENT_RANGE.start, pos.y)),
+				pos.z
+			);
+		}
+
+		FollowPlayer(playerEntity:ut.Entity, cameraEntity:ut.Entity) : void{
+			this.world.usingComponentData(cameraEntity, [ut.Core2D.TransformLocalPosition], (cameraTLocalPos)=>{
+				cameraTLocalPos.position.x = ut.Core2D.TransformService.localPositionFromWorldPosition(
+					this.world,cameraEntity,ut.Core2D.TransformService.computeWorldPosition (this.world, playerEntity)
+				).x;
 			});
 		}
 
@@ -98,7 +104,7 @@ namespace game {
 					if (o.otherEntity.isNone() || !this.world.hasComponent(o.otherEntity, Animal))
 						continue;
 					player = this.AddPoints(player, this.world.getComponentData(o.otherEntity, Animal).points);
-					reusable.GeneralUtil.SetActiveRecursively(this.world, o.otherEntity, false);  
+					reusable.EntityUtil.SetActiveRecursively(this.world, o.otherEntity, false);  
 					let context = this.world.getConfigData(GameContext);
 					context.animalCount--;
 					this.world.setConfigData(context);
@@ -141,7 +147,7 @@ namespace game {
 		}
 
 		AddPoints(player:Player, points:number) : Player{
-			GameManagerSystem.AddPoints(this.world, points);
+			AbductUtil.AddPoints(this.world, points);
 			AudioPlayer.Play(this.world,this.world.getComponentData(
 				this.world.getConfigData(GameContext).audioManager, AudioManager
 			).pointAudio);
@@ -170,13 +176,8 @@ namespace game {
 			if(player.extraLiveCount >= 0){
 				player.endStateTime = RESPAWN_DURATION + this.world.getConfigData(GameContext).time;
 			}else{
-				//TODO move
 				player.endStateTime = 0;
-				context.state = GameState.Ended;
-				console.log("Duration "+GameManagerSystem.GetTimeFormatted(context));
-				if(context.score > context.topScore)
-					GameManagerSystem.SaveTopScore(context.score);
-				this.world.setConfigData(context);
+				this.GameOver();
 			}
 			this.world.addComponent(player.graphic, ut.Disabled);
 			this.world.usingComponentData(player.explosionGraphic, [ut.Core2D.Sprite2DRenderer, ut.Core2D.Sprite2DSequencePlayer], 
@@ -188,6 +189,15 @@ namespace game {
 			);
 			AudioPlayer.Play(this.world,this.world.getComponentData(context.audioManager, AudioManager).deathAudio);
 			return player;
+		}
+
+		GameOver() : void {
+			let context = this.world.getConfigData(GameContext);
+			context.state = GameState.Ended;
+			console.log("Duration "+AbductUtil.GetTimeFormatted(context));
+			if(context.score > context.topScore)
+				AbductUtil.SaveTopScore(context.score);
+			this.world.setConfigData(context);
 		}
 
 		Resurrect(player:Player) : Player{
@@ -227,14 +237,8 @@ namespace game {
 			return ret;
 		}
 
-		IsTractorBeamInputActive(context:GameContext) : boolean {
-			return this.world.getComponentData(context.inputer, Inputer).activeInputArray[InputCommand.Action];
-		}
-
-		static IsTractorBeamActive(world:ut.World, player?:Player) : boolean {
-			if(player == null)
-				player = world.getComponentData(world.getConfigData(GameContext).player, Player);
-			return !world.hasComponent(player.tractorBeam, ut.Disabled);
+		IsTractorBeamInputActive() : boolean {
+			return this.world.getComponentData(this.world.getConfigData(GameContext).inputer, Inputer).activeInputArray[InputCommand.Action];
 		}
 	}
 }

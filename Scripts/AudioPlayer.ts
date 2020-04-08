@@ -5,14 +5,14 @@ namespace game {
 		**/
 		public static Play(world:ut.World, audioEntity:ut.Entity):void {
 			const context = world.getConfigData(GameContext);
-			let audioManager = world.getComponentData(context.audioManager, AudioManager);
-			if(audioManager.mute)
-				return;
-			if(!reusable.GeneralUtil.EntityEquals(audioManager.lastPlayedAudio, audioEntity))   
-				AudioPlayer.Stop(world, audioManager);
-			audioManager.lastPlayedAudio = audioEntity;
-			world.getOrAddComponentData(audioManager.lastPlayedAudio, ut.Audio.AudioSourceStart);
-			world.setComponentData(context.audioManager, audioManager);
+			world.usingComponentData(context.audioManager, [AudioManager], (audioManager) => {
+				if(audioManager.mute)
+					return;
+				if(!reusable.EntityUtil.Equals(audioManager.lastPlayedAudio, audioEntity))   
+					AudioPlayer.Stop(world, audioManager);
+				audioManager.lastPlayedAudio = audioEntity;
+				world.getOrAddComponentData(audioManager.lastPlayedAudio, ut.Audio.AudioSourceStart);
+			});
 		}
 
 		public static Stop(world:ut.World, audioManager?:AudioManager) : void{

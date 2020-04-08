@@ -16,7 +16,7 @@ namespace game {
 			this.world.forEach([ut.Entity, HUDHeart],(entity, heart) => {
 				let shouldBeActive = heart.index <= this.world.getComponentData(context.player, Player).extraLiveCount;
 				if(shouldBeActive == this.world.hasComponent(heart.image, ut.Disabled))
-					reusable.GeneralUtil.ToggleActive(this.world, heart.image);
+					reusable.EntityUtil.ToggleActive(this.world, heart.image);
 			});
 		}
 	}

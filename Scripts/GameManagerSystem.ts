@@ -213,7 +213,7 @@ namespace game {
 			if(context.gameOverShowTime == 0){
 				context.gameOverShowTime = GAME_OVER_DELAY + context.time;
 			}else if(context.gameOverShowTime < context.time){
-				if(context.gameOverShowTime + 0.5 < context.time && AbductUtil.HasAnyInputDown()){
+				if(context.gameOverShowTime + 1.3 < context.time && AbductUtil.HasAnyInputDown()){
 					this.LoadTitle();
 					context = this.world.getConfigData(GameContext);
 				}

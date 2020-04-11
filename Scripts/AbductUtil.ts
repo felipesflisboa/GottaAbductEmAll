@@ -1,6 +1,6 @@
 
 namespace game {
-    const SCORE_KEY : string = "AbductTopScore";
+    const SCORE_KEY : string = "AbductTopScore2";
     
 	/**
 	 * Game specific utils
